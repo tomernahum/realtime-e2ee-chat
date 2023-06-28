@@ -1,12 +1,17 @@
 import { Socket, io } from "socket.io-client";
 import type { ClientToServerEvents, MessageArgs, ServerToClientEvents } from "../../../shared-types";
+import { socketIoServerUrl } from "./globals";
 
 // console.log("Pretty sure this file will run once??")
 
 
-const serverUrl = "http://localhost:3000/"
+export let socket: Socket<ServerToClientEvents, ClientToServerEvents> = io("localhost:3000")
 
-export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(serverUrl)
+export function restartSocket(){
+    socket.disconnect()
+    socket = io(socketIoServerUrl)
+    console.log("ay")
+}
 
 
 export const socketId = new Promise((resolve, reject)=>{

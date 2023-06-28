@@ -5,8 +5,10 @@
   "dependencies": {
     "socket.io": "^4.7.0"
   },
+
   "scripts": {
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "start": "esrun src/server.ts" 
   },
 
   "name": "backend",
