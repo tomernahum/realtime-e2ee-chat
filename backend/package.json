@@ -3,14 +3,13 @@
     "nodemon": "^2.0.22"
   },
   "dependencies": {
+    "@digitak/esrun": "^3.2.24",
     "socket.io": "^4.7.0"
   },
-
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "start": "esrun src/server.ts" 
+    "start": "esrun --omit=dev src/server.ts"
   },
-
   "name": "backend",
   "version": "1.0.0",
   "main": "server.ts",
