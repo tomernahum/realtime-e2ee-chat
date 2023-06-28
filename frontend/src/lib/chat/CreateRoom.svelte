@@ -1,0 +1,178 @@
+
+
+<script lang="ts">
+	import { generateExportedEncryptionKey } from "$lib/encryption";
+	import { socket } from "$lib/realtime";
+
+
+    let dialogElement:HTMLDialogElement;
+    
+    
+    let roomUrl:string = "";
+
+    function createInsecureRoom(){
+        
+        const roomId = crypto.randomUUID().slice(0,8)
+        
+        
+        // socket.emit("create_room", roomId) //TODO
+        
+        roomUrl = `${window.location.origin}/chat/insecure-room#${roomId}`
+        dialogElement.showModal()
+    }
+    
+    async function createEncryptedRoom(){
+        
+        const roomId = crypto.randomUUID().slice(0,8)
+        const key = await generateExportedEncryptionKey()
+        
+        roomUrl = `${window.location.origin}/chat/room/${roomId}#${key}`
+        console.log(key)
+        
+        dialogElement.showModal()
+    }
+
+    let copyButtonText = "copy"
+    function copyRoomUrl(){
+        navigator.clipboard.writeText(roomUrl)
+        copyButtonText = "copy ✓"
+        setTimeout(()=>{
+            copyButtonText = "copy"
+        }, 2000)
+    }
+
+    function closeModal(){
+        dialogElement.close()
+    }
+    
+
+</script>
+
+
+<button on:click={createEncryptedRoom}>
+    Create Room
+</button>
+
+<dialog bind:this={dialogElement}>
+    <!-- <form on:submit|preventDefault={createRoom}>
+        <label>
+            Room Name:
+            <input type="text">
+        </label>
+    </form> -->
+    <p>
+        A room has been created. Access it at the url below.
+        Send the url to friends through secure means to chat with them.
+    </p>
+    <div id="link-div">
+        <input type="text" value={roomUrl} readonly>
+        
+        <button style="padding: 5px 5px" on:click={copyRoomUrl}>
+            {copyButtonText}
+        </button>
+        
+    </div>
+
+    <div>
+        <button on:click={closeModal} style="margin-top:15px">
+            Close
+        </button>
+        <a href={roomUrl} on:click={closeModal}>
+            Go there
+            <!-- TODO: add icon -->
+        </a>
+    </div>
+</dialog>
+
+<style>
+    dialog[open] {
+        border-radius: 30px;
+        z-index: 111111111111;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+
+        width: 90vw;
+        max-width: 20rem;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-bottom: .5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    dialog::backdrop {
+        background-color: rgb(18, 18, 18);
+        opacity: 80%;
+    }
+
+
+    button {
+        border-radius: 8px;
+        border: 1px solid transparent;
+        padding: 0.6em 1.2em;
+        font-size: 1em;
+        font-size: inherit;
+        font-weight: 500;
+        font-family: inherit;
+        background-color: #1a1a1a;
+        cursor: pointer;
+        transition: border-color 0.25s;
+
+    }
+    button:hover {
+        border-color: #646cff;
+    }
+    button:focus,
+    button:focus-visible {
+        outline: 4px auto -webkit-focus-ring-color;
+    }
+
+    button {
+        margin: .5rem 0
+    }
+
+
+    a {
+        border: 1px solid transparent;
+        padding: 5px;
+        border-radius: 8px;
+    }
+
+    a:hover {
+        border-color: #646cff;
+    }
+
+
+    dialog * {
+        text-align: center;
+    }
+    dialog > p, dialog > input {
+        
+        margin-bottom: .5rem;
+    }
+
+    dialog input {
+        font: 1rem;
+    }
+
+
+
+    #link-div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 10px;
+        /* background-color: red; */
+    }
+    #link-div > input {
+        /* width: 100% */
+        /* font-size: .8rem; */
+        flex-grow: 2
+    }
+    #link-div > button {
+        /* width: 100% */
+    }
+</style>

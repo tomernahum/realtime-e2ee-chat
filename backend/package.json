@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "socket.io": "^4.7.0"
+  },
+  "scripts": {
+    "dev": "nodemon src/server.ts"
+  },
+
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

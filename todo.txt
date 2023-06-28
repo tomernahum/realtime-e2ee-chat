@@ -1,0 +1,20 @@
+
+Todo: 
+- Pad encrypted messages
+- Persist chatrooms (probably to supabase)
+- Move to standalone website
+
+
+Done
+- end 2 end typesaftey? 
+- chatrooms
+- Encryption
+
+In future app:
+- optional accounts 
+    - share to accounts
+    - save workspaces
+- rate limiting
+
+- shared state w/ edits (maybe with y.js, maybe something else higher level)
+    

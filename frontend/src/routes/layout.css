@@ -1,0 +1,102 @@
+/* CSS Variables */
+:root {
+    /* Main Theme / Page Colors */
+    --main-background: rgb(32, 32, 32);
+    --secondary-background: rgb(43, 43, 43);
+    --tertiary-background: rgb(20, 20, 20);
+    
+    --subtle-border: rgb(74, 74, 74);
+    --unsubtle-border: rgb(124,124,124);
+
+    --text-color: rgb(255, 255, 255);
+
+
+    /* Sidebar and Header Variables (match main colors)*/
+    --sidebar-main-background: var(--main-background);
+    /* --sidebar-hover-background: var(--secondary-background); */
+    /* --sidebar-hover-background: var(--subtle-border); */
+    --sidebar-hover-background: rgb(52, 52, 52);
+    --sidebar-selected-background: var(--subtle-border);
+    
+    --sidebar-subtle-border: var(--subtle-border);
+    --sidebar-text-color: var(--text-color);
+
+    --sidebar-width: 9rem;
+    --sidebar-border-width: 3px;
+    --sidebar-transition-time: .5s;
+    
+    --sidebar-nav-border-radius: .5rem;
+
+    --header-height: 2.2rem;
+    --header-color:var(--secondary-background)
+}
+
+
+/* Global Styling */
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 24px;
+
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+
+    color-scheme: dark;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+
+    height: 100%;
+
+    background-color: var(--main-background);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin:0;
+}
+
+.no-transition * {
+    transition: all 0s;
+}
+
+/* TODO: scrollbars */
+
+
+
+input {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+h1 {
+    line-height: normal;
+}
+
+
+/* Temp */
+* {
+    /* border: 2px solid green */
+}
+
+aside {
+    /* border: 2px solid green; */
+}
+
+nav {
+    /* border: 2px solid magenta; */
+}
+
+button {
+    font-size: inherit;
+}
