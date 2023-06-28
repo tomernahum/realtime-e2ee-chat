@@ -1,10 +1,13 @@
 
+
+<!-- NOT YET IMPLEMENTED -->
 <script lang="ts">
 	import { socketIoServerUrl, setApiUrl, type Url } from "$lib/globals";
 
     let selected:Url = socketIoServerUrl; //it doesn't actually check this when we bind it
 
-    $: setApiUrl(selected)
+    // $: setApiUrl(selected)
+    
 
 </script>
 

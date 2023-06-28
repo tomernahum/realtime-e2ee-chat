@@ -5,13 +5,13 @@ import { socketIoServerUrl } from "./globals";
 // console.log("Pretty sure this file will run once??")
 
 
-export let socket: Socket<ServerToClientEvents, ClientToServerEvents> = io("localhost:3000")
+export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(socketIoServerUrl)
 
-export function restartSocket(){
-    socket.disconnect()
-    socket = io(socketIoServerUrl)
-    console.log("ay")
-}
+// export function restartSocket(){
+//     socket.disconnect()
+//     socket = io(socketIoServerUrl)
+//     console.log("ay")
+// }
 
 
 export const socketId = new Promise((resolve, reject)=>{
