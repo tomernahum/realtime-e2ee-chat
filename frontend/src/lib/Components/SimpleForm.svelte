@@ -33,10 +33,14 @@
         font-size: inherit;
         /* width:100%; */
         flex-grow: 1;
-        margin-right: .3rem
+        padding-left: .3rem;
+        padding-right: .3rem;
     }
 
     form {
-        display:flex
+        display:flex;
+        flex-wrap: wrap;
+        gap: .3rem;
+        justify-content: stretch;
     }
 </style>

@@ -79,6 +79,6 @@
 {:else}
     <div use:scrollToBottom={messagesData} style="padding-bottom:20px">
         <Messages data={messagesData}/>
-        <SimpleForm buttonText="send message" onSubmit={sendMessage}/>
+        <SimpleForm buttonText="Send" onSubmit={sendMessage}/>
     </div>
 {/if}
