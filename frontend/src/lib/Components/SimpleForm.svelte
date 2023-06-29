@@ -31,5 +31,12 @@
     input {
         vertical-align:baseline;
         font-size: inherit;
+        /* width:100%; */
+        flex-grow: 1;
+        margin-right: .3rem
+    }
+
+    form {
+        display:flex
     }
 </style>

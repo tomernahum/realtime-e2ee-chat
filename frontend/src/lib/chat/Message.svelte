@@ -45,6 +45,8 @@
         width:fit-content;
         
         margin-bottom: 20px;
+        word-wrap: break-word;
+        /* TODO: Fix this. it still works fine if you type like a normal person though */
     }
 
     noscript {
