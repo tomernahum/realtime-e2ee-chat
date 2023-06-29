@@ -2,6 +2,7 @@
 Todo: 
 - Pad encrypted messages
 - Persist chatrooms (probably to supabase)
+- Notifications and listening even if you are on a different page
 - Move to standalone website
 
 
