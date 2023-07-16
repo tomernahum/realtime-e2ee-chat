@@ -3,7 +3,8 @@
 const itemsContent = {
     "ID": {
         //parent
-        textContent: "Yada Yada"
+        textContent: "Yada Yada",
+        itemType: "bullet",
     }
 }
 
