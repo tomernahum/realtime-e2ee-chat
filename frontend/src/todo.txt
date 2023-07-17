@@ -1,0 +1,3 @@
+Realtime is global but rooms is local to component
+
+I think it would be good to still listen for messages on all rooms if you change tab

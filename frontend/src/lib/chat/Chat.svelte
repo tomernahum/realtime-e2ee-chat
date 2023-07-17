@@ -21,7 +21,7 @@
     //-----
 
     const {socketOn, getMountFunction, events} = new SocketOnBuilder()
-    onMount(getMountFunction()) //should call mount function after the rest of the code is run i think. (in fact you could even call onmount from realtime.ts)
+    onMount(getMountFunction()) //svelte should call mount function after the rest of the code is run i think. (in fact you could even call onmount from realtime.ts)
     onMount(()=>{console.log("Hello")})
     //-----
 

@@ -73,31 +73,3 @@ export class SocketOnBuilder {
         }
     }
 }
-
-
-
-//------
-
-async function generateKey(){
-    const key = await window.crypto.subtle.generateKey(
-        { name: "AES-GCM", length: 128 },
-        true, // extractable
-        ["encrypt", "decrypt"],
-    );
-}
-
-async function sendMessage(roomId:string, messageData:MessageArgs){
-
-    //encrypt messageData
-    const key = await window.crypto.subtle.generateKey(
-        { name: "AES-GCM", length: 128 },
-        true, // extractable
-        ["encrypt", "decrypt"],
-    );
-
-
-
-    //socket.emit("send_encrypted_message", roomId, encryptedMessageData)
-
-
-}
