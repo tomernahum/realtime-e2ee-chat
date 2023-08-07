@@ -43,7 +43,7 @@
 
     
 
-    socketOn("receive_encrypted_message", async (encryptedMessage)=>{
+    socketOn("receive_encrypted_message", async (encryptedMessage, roomId)=>{
         console.log("received encrypted message", encryptedMessage)
         //TODO: double check that we can't be attacked by malicious data
         

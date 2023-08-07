@@ -1,4 +1,6 @@
 
+// type RoomId = string;
+
 export type MessageArgs = {
     senderId:string,
     senderDisplayName:string,
@@ -26,7 +28,7 @@ export interface ServerToClientEvents {
     ) => void;
 
     //does it need roomId?
-    receive_encrypted_message: (encryptedMessage:EncryptedTextObj) => void;
+    receive_encrypted_message: (encryptedMessage:EncryptedTextObj, roomId:string) => void;
 }
 
 export interface ClientToServerEvents {
@@ -41,7 +43,8 @@ export interface ClientToServerEvents {
     ) => void;
 
     send_encrypted_message: (roomId:string, encryptedMessage:EncryptedTextObj) => void;
-
+    
+    get_message_history: (roomId:string, callback:(messageHistory:string[])=>void)  =>void;
 }
         
 export interface InterServerEvents {

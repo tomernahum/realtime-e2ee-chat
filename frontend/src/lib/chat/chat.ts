@@ -64,6 +64,12 @@ export async function getValidatedMessageData(encryptedMessage:EncryptedTextObj,
 }
 
 
+
+
+
+
+
+
 function test(){
     
 // console.log(getValidatedMessageData(""))

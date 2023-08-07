@@ -1,6 +1,7 @@
 
 import { Server } from "socket.io"
 import type { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData } from "../../shared-types"
+import { Persister, SupabasePersister } from "./persister"
 
 const io = new Server<
     ClientToServerEvents,
@@ -13,6 +14,11 @@ const io = new Server<
     }
 })
 
+const persister:Persister = new SupabasePersister() //experimenting with dependency injection / OOP
+
+// const test = Math.random() > .5
+// const persister = test ? new SupabasePersister() : new PlanetScalePersister()
+// const {saveMessage, getMessages} = persister
 
 
 io.on("connection", (socket)=>{
@@ -26,6 +32,7 @@ io.on("connection", (socket)=>{
         io.emit("test_event_s2c", "Hello from server!", myMessage)
     });
     
+    //deprecated
     socket.on("send_message", (roomId, messageData) => {
         console.log("received send_message event. room:", roomId, "message: ", messageData.messageText,)
         
@@ -59,9 +66,20 @@ io.on("connection", (socket)=>{
     socket.on("send_encrypted_message", (roomId, encryptedMessage)=>{
         if (roomId == ""){
             //TODO: maybe replace by an error
-            socket.broadcast.emit("receive_encrypted_message", encryptedMessage)
+            socket.broadcast.emit("receive_encrypted_message", encryptedMessage, roomId)
         }
 
-        socket.to(roomId).emit("receive_encrypted_message", encryptedMessage)
+        socket.to(roomId).emit("receive_encrypted_message", encryptedMessage, roomId)
+
+        //Save message to database
+        // saveMessage(roomId, encryptedMessage)
+        persister.saveMessage(roomId, encryptedMessage)
+        
+    })
+
+    socket.on("get_message_history", (roomId, callback)=>{
+        //Find the room history
+
+        //if its too big remove the oldest few...
     })
 })

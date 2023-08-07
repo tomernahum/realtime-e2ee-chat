@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "drizzle-orm": "^0.27.2",
+    "postgres": "^3.3.5"
+  },
+  "devDependencies": {
+    "@digitak/esrun": "^3.2.24",
+    "drizzle-kit": "^0.19.12"
+  },
+  "scripts": {
+    "generate-sql": "drizzle-kit generate:pg",
+
+    "load-env-vars": "env $(cat .env | grep -v \"#\" | xargs)",
+
+    "start": "esrun src/test.ts",
+    "dev": "npm run load-env-vars && npm run start"
+  }
+}

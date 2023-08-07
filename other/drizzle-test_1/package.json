@@ -5,5 +5,9 @@
   },
   "devDependencies": {
     "drizzle-kit": "^0.19.5"
+  },
+  "scripts": {
+    "start": "esrun src/test.ts",
+    "dev": "env $(cat .env | grep -v \"#\" | xargs) npm run start"
   }
 }

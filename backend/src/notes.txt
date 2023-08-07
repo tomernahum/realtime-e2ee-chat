@@ -1,0 +1,6 @@
+
+for chat app:
+since everything is end to end encrypted, we arn't really making use of socket.io's full power
+and i hear node is much more expensive on the server than something like go
+so it could be worth swapping out the backend into go etc. 
+But then I would have to learn basic go (for loops, error handling, whatever else) + websockets library + sql connection library (standard library is still a library maybe).  But it might be a useful skill to have.
