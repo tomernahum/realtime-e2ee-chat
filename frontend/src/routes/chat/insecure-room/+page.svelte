@@ -2,7 +2,7 @@
 	import { page } from "$app/stores";
 
 
-	import Chat from "$lib/chat/Chat.svelte";
+	import Chat from "$lib/chat/OldChat.svelte";
 	import { socketId } from "$lib/realtime";
 
     // $: hash = $page.url.hash //Bugged

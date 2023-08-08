@@ -3,7 +3,7 @@
     import { error } from '@sveltejs/kit';
 
 
-	import Chat from "$lib/chat/Chat.svelte";
+	import Chat from "$lib/chat/OldChat.svelte";
 	import EncryptedChat from "$lib/chat/EncryptedChat.svelte";
 	import { EncryptionHelper } from "$lib/encryption.js";
 	import { socketId } from "$lib/realtime";

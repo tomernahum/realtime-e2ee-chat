@@ -12,7 +12,7 @@ import { connect } from "@planetscale/database";
 
 export interface Persister {
     saveMessage(roomId:string, message:EncryptedTextObj): Promise<Boolean>,
-    getMessages(roomId:string): void
+    getMessages(roomId:string): Promise<EncryptedTextObj[]>
 }
 
 // PlanetScalePersister. If add more then put each persister in its own file maybe
@@ -44,19 +44,47 @@ export class PlanetScalePersister implements Persister{
         })
         const endTime = performance.now()
         console.log(`Insert Message call took ${endTime - startTime} milliseconds`)
-        return true
+        return true //this is supposed to be if the opp was successful or not
     }
     
     
     async getMessages(roomId:string) {
+        //TODO maybe cache every 1 second?
+        //Get data from db
         const startTime = performance.now()
         
-        const data = await this.db.select().from(encryptedMessages).where(eq(encryptedMessages.roomId, roomId))
-        
+        const data = await this.db.select().from(encryptedMessages).where(eq(encryptedMessages.roomId, roomId)).limit(200)
+
         const endTime = performance.now()
-        
-        // console.log(data)
         console.log(`Select Messages From Chatroom Call took ${endTime - startTime} milliseconds`) //affected by whether I have vpn on since it is a network request after all. So its ideal if server is near database physically. i think database is in aws us-east-2 right now. Railway is all in gcp us-west. Maybe I should move the planetscale to keep the railway. That said the railway doesn't need too much speed
+
+        // clean and convert data into encrypted text objects
+        const clean_data = data.reduce((accumulator:EncryptedTextObj[], item)=>{
+            if (!item.cipher || !item.iv) {
+                // todo set up a process for cleaning these rows
+                return accumulator
+            }
+            const x = {
+                cipher: item.cipher,
+                iv: item.iv
+            }
+            // accumulator
+            accumulator.push(x)
+            return accumulator
+            
+        }, [])
+
+        //Remove messages older than 200 most recent messages...
+        // don't await this so it can go in the background if it wants
+        this.cleanUpRoom()
+
+        //return cleaned data
+        return clean_data
+        
+    }
+
+    async cleanUpRoom(){
+        //TODO
     }
 
 } 

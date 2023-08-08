@@ -16,7 +16,7 @@ const io = new Server<
 
 const persister:Persister = new PlanetScalePersister() //experimenting with dependency injection / OOP
 
-// const test = Math.random() > .5
+// const test = Math.random() > .5  
 // const persister = test ? new SupabasePersister() : new PlanetScalePersister()
 // const {saveMessage, getMessages} = persister
 
@@ -76,12 +76,11 @@ io.on("connection", (socket)=>{
         //Save message to database
         // saveMessage(roomId, encryptedMessage)
         await persister.saveMessage(roomId, encryptedMessage)
-        await persister.getMessages(roomId)
     })
 
-    socket.on("get_message_history", (roomId, callback)=>{
-        //Find the room history
-
-        //if its too big remove the oldest few...
+    //This could also just be a REST type call. The cool thing about not doing that is that you can return and then keep running code in the function after. Although i guess you could do something like that by not awaiting async functions
+    socket.on("get_message_history", async (roomId, callback)=>{
+        const x = await persister.getMessages(roomId)
+        callback(x)
     })
 })

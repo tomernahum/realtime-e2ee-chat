@@ -44,7 +44,7 @@ export interface ClientToServerEvents {
 
     send_encrypted_message: (roomId:string, encryptedMessage:EncryptedTextObj) => void;
     
-    get_message_history: (roomId:string, callback:(messageHistory:string[])=>void)  =>void;
+    get_message_history: (roomId:string, callback:(messageHistory:EncryptedTextObj[])=>void)  =>void;
 }
         
 export interface InterServerEvents {

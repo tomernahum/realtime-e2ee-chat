@@ -38,7 +38,7 @@ export async function getValidatedMessageData(encryptedMessage:EncryptedTextObj,
         return {
             senderId: "error",
             senderDisplayName: "error",
-            messageText: "received invalid data"
+            messageText: "received invalid message data"
         }
     }
 

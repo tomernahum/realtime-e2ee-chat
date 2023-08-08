@@ -1,7 +1,8 @@
 
 Todo: 
+- ! Test what happens if database goes down and make it resilient
 - Pad encrypted messages
-- Persist chatrooms (probably to supabase)
+
 - Notifications and listening even if you are on a different page
 - Move to standalone website
 
@@ -10,6 +11,7 @@ Done
 - end 2 end typesaftey? 
 - chatrooms
 - Encryption
+- Persist chatrooms (to planetscale) - (mostly done)
 
 In future app:
 - optional accounts 

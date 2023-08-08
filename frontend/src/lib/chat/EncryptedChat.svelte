@@ -6,6 +6,7 @@
 	import { getValidatedMessageData, type MessageData } from "./chat";
 	import { scrollToBottom } from "$lib/Components/actions";
 	import type { EncryptionHelper, ExportedKey } from "$lib/encryption";
+	import type { EncryptedTextObj } from "../../../../shared-types";
     
     const exampleMessageData:MessageData = {
         senderId: "dImX61BLaswpBoCsAADT",
@@ -28,14 +29,49 @@
     //-----
 
     let joined_room = false;
-    $: socket.emit("join_room_exclusively", roomId, ()=>{joined_room=true})
+    $: {
+        if (!joined_room)
+            socket.emit("join_room_exclusively", roomId, ()=>{joined_room=true})
+            //I believe SocketIo will emit this multiple times automatically until it is acknowledged by the server, such that if the connection goes down and back up it will work
+    }
     
-    // let encryption:EncryptionHelper;
-    // EncryptionHelper.getObj(encryptionKey).then(encryptionObj => {
-    //     encryption = encryptionObj
-    // })
-    //i sort of forgot how to code good right now tbh
+    let got_old_messages = false;
+    $: {
+        if (!got_old_messages)
+            socket.emit("get_message_history", roomId, async (messageHistory)=>{
+                await receiveMessageHistory(messageHistory)
+                got_old_messages=true
+            })
+    }
+    //If we didn't get the message history within 10 seconds we assume the server/db is down
+    //Probably a more "clean" way of implementing this
+    let failed_to_get_old_messages = false
+    setTimeout(()=>{
+        if (!got_old_messages) {
+            failed_to_get_old_messages = true
+        }
+    }, 10_000)
+    $: {
+        if (failed_to_get_old_messages)
+            messagesData[0] = {
+                senderId: "dImX61BLaswpBoCsAADT",
+                senderDisplayName: "ttools",
+                messageText: "Failed to get Message History, but you might still be able to see new messages showing up"
+            }
+    }
     
+    async function receiveMessageHistory(messageHistory:EncryptedTextObj[]) {
+        
+        const historicalMessages = await Promise.all(messageHistory.map(async (encryptedMessage)=>{
+                return await getValidatedMessageData(encryptedMessage, encryption)
+            })
+        )
+        console.log(historicalMessages)
+        // messagesData.push(messageData)
+        messagesData = [...messagesData, ...historicalMessages]
+    }
+
+
     
     //---
 
@@ -76,7 +112,11 @@
 
 {#if !joined_room || !encryption}
     <p>Connecting to Chat...</p>
+{:else if !got_old_messages && !failed_to_get_old_messages}
+    <p>Retrieving Message History</p>
 {:else}
+        
+
     <div use:scrollToBottom={messagesData} style="padding-bottom:20px">
         <Messages data={messagesData}/>
         <SimpleForm buttonText="Send" onSubmit={sendMessage}/>
