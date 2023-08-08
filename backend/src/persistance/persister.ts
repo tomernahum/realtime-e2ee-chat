@@ -1,10 +1,12 @@
 import { EncryptedTextObj } from "../../../shared-types";
 
 import { drizzle } from "drizzle-orm/planetscale-serverless";
-import { connect } from "@planetscale/database";
+// import { connect } from "@planetscale/database";
 import 'dotenv/config'
 import { encryptedMessages } from "./schema-planetscale";
 import { eq } from "drizzle-orm";
+import { connect } from "@planetscale/database";
+// import mysql from "mysql2/promise";
 
 
 
@@ -15,34 +17,27 @@ export interface Persister {
 
 // PlanetScalePersister. If add more then put each persister in its own file maybe
 
-
-// create the planetscale connecetion
-const connection = connect({
-    host: process.env.DATABASE_HOST,
-    username: process.env.DATABASE_USERNAME,
-    password: process.env.DATABASE_PASSWORD,
-});
-
-const db = drizzle(connection); //could be causing problems as i don't understand `this` properly
 export class PlanetScalePersister implements Persister{
-    // db:ReturnType<typeof drizzle>
+    db:ReturnType<typeof drizzle>
     
-    constructor() {
-
-        // // create the connection
-        // const connection = connect({
-        //     host: process.env.DATABASE_HOST,
-        //     username: process.env.DATABASE_USERNAME,
-        //     password: process.env.DATABASE_PASSWORD,
-        // });
+    constructor() { 
         
-        // this.db = drizzle(connection); //could be causing problems as i don't understand `this` properly
+        //constructers not supporting async is stupid btw. luckily this connect function is synchronous however that works
+        
+        // create the connection
+        const connection = connect({
+            host: process.env.DATABASE_HOST,
+            username: process.env.DATABASE_USERNAME,
+            password: process.env.DATABASE_PASSWORD,
+        });
+        
+        this.db = drizzle(connection); //note i don't understand `this` properly
         
     }
 
     async saveMessage(roomId:string, message:EncryptedTextObj) {
         const startTime = performance.now()
-        await db.insert(encryptedMessages).values({
+        await this.db.insert(encryptedMessages).values({
             roomId: roomId,
             cipher: message.cipher,
             iv: message.iv,
@@ -56,12 +51,12 @@ export class PlanetScalePersister implements Persister{
     async getMessages(roomId:string) {
         const startTime = performance.now()
         
-        const data = await db.select().from(encryptedMessages).where(eq(encryptedMessages.roomId, roomId))
+        const data = await this.db.select().from(encryptedMessages).where(eq(encryptedMessages.roomId, roomId))
         
         const endTime = performance.now()
         
         // console.log(data)
-        console.log(`Select Messages From Chatroom Call ${endTime - startTime} milliseconds`) //affected by whether I have vpn on since it is a network request after all. So its ideal if server is near database physically. i think database is in aws us-east-2 right now. Railway is all in gcp us-west. Maybe I should move the planetscale to keep the railway. That said the railway doesn't need too much speed
+        console.log(`Select Messages From Chatroom Call took ${endTime - startTime} milliseconds`) //affected by whether I have vpn on since it is a network request after all. So its ideal if server is near database physically. i think database is in aws us-east-2 right now. Railway is all in gcp us-west. Maybe I should move the planetscale to keep the railway. That said the railway doesn't need too much speed
     }
 
 } 

@@ -20,6 +20,8 @@ const persister:Persister = new PlanetScalePersister() //experimenting with depe
 // const persister = test ? new SupabasePersister() : new PlanetScalePersister()
 // const {saveMessage, getMessages} = persister
 
+console.log("debug_thing", process.env.NIXPACKS_NODE_VERSION)
+
 
 io.on("connection", (socket)=>{
     console.log("Connected !", socket.id)
