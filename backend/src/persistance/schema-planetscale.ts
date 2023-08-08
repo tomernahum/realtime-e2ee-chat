@@ -7,8 +7,10 @@ import { sql } from 'drizzle-orm'
 export const encryptedMessages = mysqlTable('encrypted_chat_message', 
     {
         id: serial('id').primaryKey(),
-        messageData: text('message_data'),
+        // messageData: text('message_data'), //temp
         roomId: varchar("room_id", {length: 255}),
+        cipher: text('cipher'),
+        iv: text('iv'), //TODO optimize / make varchar ig
     }, 
     (thisTable) => ({
         roomIndex: index('name_idx').on(thisTable.roomId),

@@ -63,7 +63,7 @@ io.on("connection", (socket)=>{
         }
     })
 
-    socket.on("send_encrypted_message", (roomId, encryptedMessage)=>{
+    socket.on("send_encrypted_message", async (roomId, encryptedMessage)=>{
         if (roomId == ""){
             //TODO: maybe replace by an error
             socket.broadcast.emit("receive_encrypted_message", encryptedMessage, roomId)
@@ -73,8 +73,8 @@ io.on("connection", (socket)=>{
 
         //Save message to database
         // saveMessage(roomId, encryptedMessage)
-        persister.saveMessage(roomId, encryptedMessage)
-        
+        await persister.saveMessage(roomId, encryptedMessage)
+        await persister.getMessages(roomId)
     })
 
     socket.on("get_message_history", (roomId, callback)=>{
