@@ -32,12 +32,14 @@ export class PlanetScalePersister implements Persister{
     }
 
     async saveMessage(roomId:string, message:EncryptedTextObj) {
-        console.log("saving message")
+        const startTime = performance.now()
         await this.db.insert(encryptedMessages).values({
             roomId: roomId,
             cipher: message.cipher,
             iv: message.iv,
         })
+        const endTime = performance.now()
+        console.log(`Insert Message call took ${endTime - startTime} milliseconds`)
         return true
     }
     
@@ -49,8 +51,8 @@ export class PlanetScalePersister implements Persister{
         
         const endTime = performance.now()
         
-        console.log(data)
-        console.log(`Drizzle Select call took ${endTime - startTime} milliseconds`) //affected by whether I have vpn on since it is a network request after all. So its ideal if server is near database physically. i think database is in aws us-east-2 right now. Railway is all in gcp us-west. Maybe I should move the planetscale to keep the railway. That said the railway doesn't need too much speed
+        // console.log(data)
+        console.log(`Select Messages From Chatroom Call ${endTime - startTime} milliseconds`) //affected by whether I have vpn on since it is a network request after all. So its ideal if server is near database physically. i think database is in aws us-east-2 right now. Railway is all in gcp us-west. Maybe I should move the planetscale to keep the railway. That said the railway doesn't need too much speed
     }
 
 } 
