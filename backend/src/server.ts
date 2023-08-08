@@ -1,7 +1,7 @@
 
 import { Server } from "socket.io"
 import type { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData } from "../../shared-types"
-import { Persister, SupabasePersister } from "./persister"
+import { Persister, PlanetScalePersister } from "./persistance/persister"
 
 const io = new Server<
     ClientToServerEvents,
@@ -14,7 +14,7 @@ const io = new Server<
     }
 })
 
-const persister:Persister = new SupabasePersister() //experimenting with dependency injection / OOP
+const persister:Persister = new PlanetScalePersister() //experimenting with dependency injection / OOP
 
 // const test = Math.random() > .5
 // const persister = test ? new SupabasePersister() : new PlanetScalePersister()

@@ -1,0 +1,14 @@
+
+
+
+I'm experimenting with dependency injection as I saw a video on it
+My database layer thing is a dependency to inject
+
+what if I made this persistance folder it's own npm folder with it's own packages
+or it contains folders for planetscale-persistance, mongo-persistance etc. 
+Then to inject the dependency I import 'persistor' from './persistance/planetscale/persister.ts'
+That way the other dependencies such as @planetscale/database can live in that folder only,
+and not get used if that's not the dependency injected...
+of course then you would have to detect which one it is when you run npm i in the top level
+I wonder if there is a system for this. I can think of npm private packages
+I wonder if that is too cumbersome to do easily (not easily as my idea of folders with their own dependencies)
