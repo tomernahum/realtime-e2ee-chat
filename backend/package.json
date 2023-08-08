@@ -19,5 +19,8 @@
   "main": "server.ts",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "engines": {
+    "node":"18.x"
+  }
 }
