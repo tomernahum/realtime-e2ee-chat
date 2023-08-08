@@ -15,25 +15,34 @@ export interface Persister {
 
 // PlanetScalePersister. If add more then put each persister in its own file maybe
 
+
+// create the planetscale connecetion
+const connection = connect({
+    host: process.env.DATABASE_HOST,
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+});
+
+const db = drizzle(connection); //could be causing problems as i don't understand `this` properly
 export class PlanetScalePersister implements Persister{
-    db:ReturnType<typeof drizzle>
+    // db:ReturnType<typeof drizzle>
     
     constructor() {
 
-        // create the connection
-        const connection = connect({
-            host: process.env.DATABASE_HOST,
-            username: process.env.DATABASE_USERNAME,
-            password: process.env.DATABASE_PASSWORD,
-        });
+        // // create the connection
+        // const connection = connect({
+        //     host: process.env.DATABASE_HOST,
+        //     username: process.env.DATABASE_USERNAME,
+        //     password: process.env.DATABASE_PASSWORD,
+        // });
         
-        this.db = drizzle(connection);
+        // this.db = drizzle(connection); //could be causing problems as i don't understand `this` properly
         
     }
 
     async saveMessage(roomId:string, message:EncryptedTextObj) {
         const startTime = performance.now()
-        await this.db.insert(encryptedMessages).values({
+        await db.insert(encryptedMessages).values({
             roomId: roomId,
             cipher: message.cipher,
             iv: message.iv,
@@ -47,7 +56,7 @@ export class PlanetScalePersister implements Persister{
     async getMessages(roomId:string) {
         const startTime = performance.now()
         
-        const data = await this.db.select().from(encryptedMessages).where(eq(encryptedMessages.roomId, roomId))
+        const data = await db.select().from(encryptedMessages).where(eq(encryptedMessages.roomId, roomId))
         
         const endTime = performance.now()
         
