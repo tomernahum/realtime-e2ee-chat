@@ -1,10 +1,25 @@
 
 Todo: 
 - ! Test what happens if database goes down and make it resilient
-- Pad encrypted messages
+- Load test the server, maybe with a local database copy
+- Add date sent to the server maybe? or some clear way of ordering it besides by database id. although that is good enough probably
+- Create a system to remove messages older than blank and not in 500 most recent messages
 
-- Notifications and listening even if you are on a different page
-- Move to standalone website
+- Pad encrypted messages
+- Remember your userId accross reloads (easy)
+
+- recent chats (in chat page and maybe in sidebar)
+    - implement chatroom names (maybe)
+
+- See https://realtime.ttools.io/chat/room/ee7c3eaf#QHLpsxHrjGYmNeRYiTzf2A 
+    - many improvements, primarily frontend
+- 
+- 
+
+- Notifications 
+
+- Move to standalone website, maybe redo the frontend
+- listening even if you are on a different page maybe?
 
 
 Done

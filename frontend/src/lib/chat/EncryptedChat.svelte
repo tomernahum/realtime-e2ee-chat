@@ -113,7 +113,8 @@
 {#if !joined_room || !encryption}
     <p>Connecting to Chat...</p>
 {:else if !got_old_messages && !failed_to_get_old_messages}
-    <p>Retrieving Message History</p>
+    <p>Connecting to Chat... (retrieving message history)</p>
+    <!-- <p>Retrieving Message History</p> -->
 {:else}
         
 
