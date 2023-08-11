@@ -1,0 +1,6 @@
+select id, room_id, iv, cipher
+from encrypted_chat_message 
+order by id 
+desc 
+limit 10
+;
