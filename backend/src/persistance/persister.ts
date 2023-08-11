@@ -36,6 +36,8 @@ export class PlanetScalePersister implements Persister{
     }
 
     async saveMessage(roomId:string, message:EncryptedTextObj) {
+        //todo: check if its possible to validate the message is legitimate? I guess you can't
+
         const startTime = performance.now()
         await this.db.insert(encryptedMessages).values({
             roomId: roomId,
@@ -44,6 +46,11 @@ export class PlanetScalePersister implements Persister{
         })
         const endTime = performance.now()
         console.log(`Insert Message call took ${endTime - startTime} milliseconds`)
+        
+        if (!roomId) {
+            console.error("NO ROOM ID")
+            return false
+        }
         return true //this is supposed to be if the opp was successful or not
     }
     

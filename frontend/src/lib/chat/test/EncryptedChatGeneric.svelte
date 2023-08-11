@@ -2,11 +2,11 @@
 	import SimpleForm from "$lib/Components/SimpleForm.svelte";
 	import { SocketOnBuilder, socket } from "$lib/realtime";
 	import { onMount } from "svelte";
-	import Messages from "./Messages.svelte";
-	import { getValidatedMessageData, type MessageData } from "./chat";
+	import Messages from "../Messages.svelte";
+	import { getValidatedMessageData, type MessageData } from "../chat";
 	import { scrollToBottom } from "$lib/Components/actions";
 	import type { EncryptionHelper, ExportedKey } from "$lib/encryption";
-	import type { EncryptedTextObj } from "../../../../shared-types";
+	import type { EncryptedTextObj } from "../../../../../shared-types";
     
     const exampleMessageData:MessageData = {
         senderId: "dImX61BLaswpBoCsAADT",
@@ -15,12 +15,14 @@
     }
 
     //-----
+    export let roomId:string;
 
     export let displayName = "Default"
     export let messagesData:MessageData[] = [exampleMessageData] //
-    export let roomId = ""
     // export let encryptionKey:ExportedKey;
     export let encryption:EncryptionHelper
+
+    export const callSend = (message:string) => {sendMessage(message)}
 
     //-----
 
@@ -116,11 +118,9 @@
     <p>Connecting to Chat... (retrieving message history)</p>
     <!-- <p>Retrieving Message History</p> -->
 {:else}
-        
-
-    <div use:scrollToBottom={messagesData} style="padding-bottom:20px">
+    <slot />
+    <!-- <div use:scrollToBottom={messagesData} style="padding-bottom:20px">
         <Messages data={messagesData}/>
         <SimpleForm buttonText="Send" onSubmit={sendMessage}/>
-    </div>
+    </div> -->
 {/if}
-
