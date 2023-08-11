@@ -1,14 +1,12 @@
 <script lang="ts">
-    
 	import type { EncryptionHelper } from "$lib/encryption";
-	import type { MessageData } from "../chat";
+	import type { MessageData } from "$lib/chat/chat";
     import EncryptedChatGeneric from "$lib/chat/test/EncryptedChatGeneric.svelte";
-	import { scrollToBottom } from "$lib/Components/actions";
-	import Messages from "../Messages.svelte";
 	import SimpleForm from "$lib/Components/SimpleForm.svelte";
+	import Kanban from "./Kanban.svelte";
 
 
-    
+
     export let encryption:EncryptionHelper;
     export let roomId:string;
     // export let encryptionKey:string;
@@ -28,9 +26,6 @@
 
 <!-- IDK the right way to do this. Made a logic wrapper component to do the chat messages....-->
 <EncryptedChatGeneric {encryption} {roomId} bind:messagesData bind:callSend>
-    <div use:scrollToBottom={messagesData} style="padding-bottom:20px">
-        <Messages data={messagesData}/>
-        <SimpleForm buttonText="Send" onSubmit={callSend}/>
-    </div>
+    <Kanban {messagesData} {callSend} />
 </EncryptedChatGeneric>
 
