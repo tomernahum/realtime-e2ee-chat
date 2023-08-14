@@ -51,6 +51,7 @@
     <p>Loading encryption module</p>
 {:else if encryption==="error"}
     <p>Your encryption key does not appear to be a valid key. Make sure to include the original # section in the url</p>
+    <!-- (It could also be that you are not accessing this site over https or in a "secure context" https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) </p> -->
 {:else}
     <EncryptedChat {roomId} {encryption}/>
 {/if}

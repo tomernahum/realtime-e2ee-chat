@@ -77,21 +77,19 @@
 
     
 
-    {#key data.pathname}
-        <div 
-            class="page-container"
-            in:fade={{ duration: 100, delay: 150 }}
-            out:fade={{ duration: 100}}
-        >
-            <!-- in:fade={!smallScreen ? { duration: 100, delay: 150 } : {duration: 0, delay: 0}}
-            out:fade={!smallScreen ? { duration: 100} : {duration:0, delay: 0}} -->
-            <main>
-                <slot/>
-            </main>
-        </div>
-    {/key}
-    <!-- For Tricking Svelte since it can't see this through the key apperently and keeps deleting my css selectors-->
-    <div class="page-container" style="display:none"></div>
+    <div 
+        class="page-container"
+        in:fade={{ duration: 100, delay: 150 }}
+        out:fade={{ duration: 100}}
+    >
+        <!-- in:fade={!smallScreen ? { duration: 100, delay: 150 } : {duration: 0, delay: 0}}
+        out:fade={!smallScreen ? { duration: 100} : {duration:0, delay: 0}} -->
+        <main>
+            <slot/>
+        </main>
+    </div>
+    <!-- Was For Tricking Svelte since it can't see this through the key apperently and keeps deleting my css selectors-->
+    <!-- <div class="page-container" style="display:none"></div> -->
     
 </div>
 

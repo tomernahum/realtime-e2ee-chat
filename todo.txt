@@ -39,3 +39,7 @@ In future app:
 
 Unrelated todo:
     - learn about env variables!
+
+Refactoring todo:
+    - may not make sense for page/Room to create encryption object and pass it to the chat component, why not just pass the key to the chat component
+        - difference right now is the decryption error message is displayed at the page level rather than the chat level.
