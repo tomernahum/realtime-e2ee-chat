@@ -3,14 +3,11 @@
     import "./layout.css"
     
 	import SidebarContents from '$lib/sidebar-contents/SidebarContents.svelte';
+    // TODO replace this with a svelte slot maybe and make this whole thing a component and maybe seperate the sidebar functionality from the styling idk
     
-    import { onMount } from 'svelte';
 	import { crossfade, fade, fly } from 'svelte/transition';
 
     $: currentPage = $page.url.pathname;
-
-
-    export let data;
 
 
     //
@@ -20,14 +17,13 @@
         showSidebar = !showSidebar;
     }
 
-    // let showSidebar:boolean = JSON.parse(localStorage.getItem("show-sidebar") || "true");
-    // $: localStorage.setItem("showSidebar", JSON.stringify(showSidebar))
-    //doesn't work probably because of prerendering
-
-    let screenWidth:number;
+    let screenWidth:number; //window.innerwidth later down. This seems to work on android chrome, android firefox, windows firefox with privacy.resistfingerprinting on, windows brave. Something tells me all this anti fingerprinting tech does not work
     $: smallScreen = screenWidth < 700;
+    
 
-    let showSidebar = true;
+
+    let showSidebar = smallScreen ? true : false;
+
 
     export const snapshot = {
         capture: () => showSidebar,
