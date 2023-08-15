@@ -3,7 +3,7 @@
 	import type { EncryptionHelper } from "$lib/encryption";
 	import type { MessageData } from "../chat";
     import EncryptedChatGeneric from "$lib/chat/test/EncryptedChatGeneric.svelte";
-	import { scrollToBottom } from "$lib/Components/actions";
+	import { scrollToBottomAction } from "$lib/Components/utils";
 	import Messages from "../Messages.svelte";
 	import SimpleForm from "$lib/Components/SimpleForm.svelte";
 
@@ -28,7 +28,7 @@
 
 <!-- IDK the right way to do this. Made a logic wrapper component to do the chat messages....-->
 <EncryptedChatGeneric {encryption} {roomId} bind:messagesData bind:callSend>
-    <div use:scrollToBottom={messagesData} style="padding-bottom:20px">
+    <div use:scrollToBottomAction={messagesData} style="padding-bottom:20px">
         <Messages data={messagesData}/>
         <SimpleForm buttonText="Send" onSubmit={callSend}/>
     </div>

@@ -4,9 +4,10 @@
 	import { onMount } from "svelte";
 	import Messages from "./Messages.svelte";
 	import { getValidatedMessageData, type MessageData } from "./chat";
-	import { scrollToBottom } from "$lib/Components/actions";
+	import { areScrolledToBottom, scrollToBottom, scrollToBottomAction } from "$lib/Components/utils";
 	import type { EncryptionHelper, ExportedKey } from "$lib/encryption";
 	import type { EncryptedTextObj } from "../../../../shared-types";
+	import { tick } from "svelte";
     
     const exampleMessageData:MessageData = {
         senderId: "dImX61BLaswpBoCsAADT",
@@ -72,8 +73,13 @@
     }
 
 
-    
-    //---
+    // Scroll to bottom on page load
+    let div:HTMLDivElement;
+    $: {
+        div?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest"});    
+    }
+
+    let unreadMessages = false;
 
     
 
@@ -87,6 +93,22 @@
 
         messagesData.push(messageData)
         messagesData = messagesData
+
+        //if already on bottom of the page scroll to bottom
+        const lookingAtNewMessages = areScrolledToBottom(80) && document.hasFocus()
+        if (lookingAtNewMessages) {
+            scrollToBottom(div)
+            // unreadMessages = false
+        }
+        else {
+            unreadMessages = true
+        }
+        
+        
+        
+            
+        // onMessageReceived()
+
     })
 
     async function sendMessage(message:string){
@@ -118,11 +140,12 @@
             }
 
             messagesData = messagesData;
+            scrollToBottom(div)
         })
         
-        
-        
     }  
+
+    
 
 
 </script>
@@ -135,10 +158,16 @@
     <!-- <p>Retrieving Message History</p> -->
 {:else}
         
-
-    <div use:scrollToBottom={messagesData} style="padding-bottom:20px">
+    <!--  use:scrollToBottom={messagesData} -->
+    <div bind:this={div} style="padding-bottom:20px"> 
         <Messages data={messagesData}/>
         <SimpleForm buttonText="Send" onSubmit={sendMessage}/>
     </div>
+
+    {#if areScrolledToBottom(80)}
+        <!-- <div style="position:fixed; left:50%; bottom:50%; z-index:10000">
+            hi
+        </div> -->
+    {/if}
 {/if}
 

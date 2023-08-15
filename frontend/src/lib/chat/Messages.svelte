@@ -3,7 +3,7 @@
 	import { tick } from "svelte";
     import Message from "./Message.svelte";
     import type {MessageData} from "./chat"
-	import { scrollToBottom } from "$lib/Components/actions";
+	import { scrollToBottomAction } from "$lib/Components/utils";
 
 
     export let data:MessageData[]

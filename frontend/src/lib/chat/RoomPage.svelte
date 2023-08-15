@@ -1,4 +1,5 @@
 <script lang="ts">
+    // Just testing around here
     import { page } from "$app/stores";
 	import { EncryptionHelper } from "$lib/encryption";
     import { socketId } from "$lib/realtime";

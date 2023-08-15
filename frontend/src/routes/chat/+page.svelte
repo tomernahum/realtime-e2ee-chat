@@ -33,6 +33,8 @@
 <a href="/chat/room/aec6ed16#3PPzzbuIjlMpo3b6WUs4LA">Public Room #1</a>
 <a href="/chat/room/b553d191#y2SunPQxcyqUeUC5Jaq3Tw">Public Room #2</a>
 <a href="/chat/room/ee7c3eaf#QHLpsxHrjGYmNeRYiTzf2A">Public Room #3</a>
+<br>
+<a href="/chat/room/8b79d6a9#u_I04ZZ_6GJmwFQ4wECqaQ">Suggestion Box </a>
 
 <style>
     h3, p {

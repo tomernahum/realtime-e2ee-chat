@@ -4,7 +4,7 @@
 	import { onMount } from "svelte";
 	import Messages from "../Messages.svelte";
 	import { getValidatedMessageData, type MessageData } from "../chat";
-	import { scrollToBottom } from "$lib/Components/actions";
+	import { scrollToBottomAction } from "$lib/Components/utils";
 	import type { EncryptionHelper, ExportedKey } from "$lib/encryption";
 	import type { EncryptedTextObj } from "../../../../../shared-types";
     

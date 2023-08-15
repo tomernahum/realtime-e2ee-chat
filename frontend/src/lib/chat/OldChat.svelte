@@ -4,7 +4,7 @@
 	import { onMount } from "svelte";
 	import Messages from "./Messages.svelte";
 	import type { MessageData } from "./chat";
-	import { scrollToBottom } from "$lib/Components/actions";
+	import { scrollToBottomAction } from "$lib/Components/utils";
     
     const exampleMessageData:MessageData = {
         senderId: "dImX61BLaswpBoCsAADT",
@@ -60,7 +60,7 @@
 {#if loading}
     <p>Connecting to Chat...</p>
 {:else}
-    <div use:scrollToBottom={messagesData} style="padding-bottom:20px">
+    <div use:scrollToBottomAction={messagesData} style="padding-bottom:20px">
         <Messages data={messagesData}/>
         <SimpleForm buttonText="send message" onSubmit={sendMessage}/>
     </div>
