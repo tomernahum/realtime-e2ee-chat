@@ -66,7 +66,7 @@ io.on("connection", (socket)=>{
     })
 
     socket.on("send_encrypted_message", async (roomId, encryptedMessage, callback)=>{
-        const MAX_MESSAGE_LENGTH = 10_000 //max length of cipher not plaintext, cipher text seems about 1.4 times bigger than plain text
+        const MAX_MESSAGE_LENGTH = 11_000 //max length of cipher not plaintext, cipher text seems about 1.4 times bigger than plain text
         if (encryptedMessage.cipher.length > MAX_MESSAGE_LENGTH) {
             console.log("someone tried to send a long message")
             //return error

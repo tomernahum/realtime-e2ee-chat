@@ -137,7 +137,9 @@ function generateIv(){
 */
 async function _encryptText(text:string, key:CryptoKey){
     
-    const encodedText = encodeStringToBinary(text)
+    const paddedText = padText(text)
+
+    const encodedText = encodeStringToBinary(paddedText)
     // TODO: add padding to the text so its not clear how long the text was
     // Probably like 100 chars then 300 then 1000 chars then whatever (or could have max message size). Maybe i need to do more security research too
     
@@ -163,10 +165,35 @@ async function _decryptText(cipher:BufferSource, iv:Uint8Array, key:CryptoKey) {
         iv:iv
     }, key, cipher)
 
-    return decodeBinaryToString(encodedText)
+    const decodedText = decodeBinaryToString(encodedText)
+
+    return unPadText(decodedText)
 }
 
 
+
+function padText(text:string) {
+    text += "10"
+
+    const PAD_CHECKPOINTS = [500, 2500, 5000, 10_000] as const //max length on server side is 11_000
+
+    for (const pad_length of PAD_CHECKPOINTS) {
+        if (text.length < pad_length) {
+            text += "0".repeat(pad_length - text.length)
+            break;
+        }
+    }
+    // if (text.length > PAD_CHECKPOINTS.at(-1)) {
+        //Do nothing
+    // }
+    console.log("padded text", text)
+
+    return text
+}
+
+function unPadText(text:string) {
+    return text.slice(0, text.lastIndexOf('1'))
+}
 
 
 
