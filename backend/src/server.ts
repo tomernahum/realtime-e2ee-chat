@@ -20,7 +20,7 @@ const persister:Persister = new PlanetScalePersister() //experimenting with depe
 // const persister = test ? new SupabasePersister() : new PlanetScalePersister()
 // const {saveMessage, getMessages} = persister
 
-console.log("debug_thing", process.env.NIXPACKS_NODE_VERSION)
+
 
 
 io.on("connection", (socket)=>{
@@ -65,7 +65,20 @@ io.on("connection", (socket)=>{
         }
     })
 
-    socket.on("send_encrypted_message", async (roomId, encryptedMessage)=>{
+    socket.on("send_encrypted_message", async (roomId, encryptedMessage, callback)=>{
+        const MAX_MESSAGE_LENGTH = 10_000 //max length of cipher not plaintext, cipher text seems about 1.4 times bigger than plain text
+        if (encryptedMessage.cipher.length > MAX_MESSAGE_LENGTH) {
+            console.log("someone tried to send a long message")
+            //return error
+            if (callback) {
+                callback({
+                    errorMessage: "That message is too long, max message length is approximately 5000 characters"
+                })
+            }
+            return
+        }
+
+
         if (roomId == ""){
             //TODO: maybe replace by an error
             socket.broadcast.emit("receive_encrypted_message", encryptedMessage, roomId)
@@ -73,14 +86,17 @@ io.on("connection", (socket)=>{
 
         socket.to(roomId).emit("receive_encrypted_message", encryptedMessage, roomId)
 
+        if (callback)
+            callback({}) //mark as sent. Do this before saving to db to reduce latency / not rely on db
+
         //Save message to database
-        // saveMessage(roomId, encryptedMessage)
         await persister.saveMessage(roomId, encryptedMessage)
     })
 
     //This could also just be a REST type call. The cool thing about not doing that is that you can return and then keep running code in the function after. Although i guess you could do something like that by not awaiting async functions
     socket.on("get_message_history", async (roomId, callback)=>{
         const x = await persister.getMessages(roomId)
+        //TODO: pagination
         callback(x)
     })
 })

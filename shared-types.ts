@@ -42,7 +42,11 @@ export interface ClientToServerEvents {
         {messageText, senderDisplayName, senderId}:MessageArgs
     ) => void;
 
-    send_encrypted_message: (roomId:string, encryptedMessage:EncryptedTextObj) => void;
+    send_encrypted_message: (
+        roomId:string, 
+        encryptedMessage:EncryptedTextObj, 
+        sentOrError?:(obj:{errorMessage?:string})=>void //Can add to params whether it successfully sent and whether successfully saved to db if necessary
+    ) => void;
     
     get_message_history: (roomId:string, callback:(messageHistory:EncryptedTextObj[])=>void)  =>void;
 }

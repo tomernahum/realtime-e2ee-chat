@@ -97,13 +97,31 @@
 
         //send message
         const encryptedMessage = await encryption.encryptText(JSON.stringify(messageData))
-        socket.emit("send_encrypted_message", roomId, encryptedMessage)
         
         console.log("sending encrypted message", encryptedMessage, "with key", await encryption.exportKeyAsText())
         
-        //update sent screen
-        messagesData.push(messageData)
-        messagesData = messagesData;
+        
+        socket.emit("send_encrypted_message", roomId, encryptedMessage, ({errorMessage})=>{
+            //after sending update the sent screen
+            // no optimistic updates, will only display to user on server
+            if (errorMessage) {
+                console.log(errorMessage)
+                messagesData.push({
+                    senderId:"error",
+                    senderDisplayName:"ttools",
+                    messageText: `Could not send message: "${errorMessage}"`
+                    //TODO: if implementing colors then make it send from you but in red
+                })
+            }
+            else {
+                messagesData.push(messageData)
+            }
+
+            messagesData = messagesData;
+        })
+        
+        
+        
     }  
 
 
