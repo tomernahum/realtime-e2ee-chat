@@ -23,6 +23,10 @@
     }
     //TODO: Should probably move this into the component and just pass the encryption key lol. only thing needed to figure out is pasisng up errors
 
+    const roomTitle = "Encrypted Chat"
+    let tabTitlePrefix:string = "";
+    $: pageTitle = `${tabTitlePrefix} ${roomTitle}`
+
 </script>
 <svelte:window
   on:hashchange={() => {
@@ -44,9 +48,15 @@
         {/await}
     </p>
     <!-- <br> -->
+    <p></p>
+
 </div>
 
 <br>
+
+<svelte:head>
+    <title>{pageTitle}</title>
+</svelte:head>
 
 {#if !encryption}
     <p>Loading encryption module</p>
@@ -54,5 +64,5 @@
     <p>Your encryption key does not appear to be a valid key. Make sure to include the original # section in the url</p>
     <!-- (It could also be that you are not accessing this site over https or in a "secure context" https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) </p> -->
 {:else}
-    <EncryptedChat {roomId} {encryption}/>
+    <EncryptedChat {roomId} {encryption} bind:tabTitlePrefixRecommendation={tabTitlePrefix}/>
 {/if}

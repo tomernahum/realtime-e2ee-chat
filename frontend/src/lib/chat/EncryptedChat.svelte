@@ -1,4 +1,5 @@
 <script lang="ts">
+    // TODO: maybe extract chat display into its own component and handle the scrolling behavior there, and make this component more like roompage and focused on handling socket and state 
 	import SimpleForm from "$lib/Components/SimpleForm.svelte";
 	import { SocketOnBuilder, socket } from "$lib/realtime";
 	import { onMount } from "svelte";
@@ -9,6 +10,8 @@
 	import type { EncryptedTextObj } from "../../../../shared-types";
 	import { tick } from "svelte";
 	import NewMessagesAlert from "./NewMessagesAlert.svelte";
+	import { page } from "$app/stores";
+	import { writable } from "svelte/store";
     
     const exampleMessageData:MessageData = {
         senderId: "dImX61BLaswpBoCsAADT",
@@ -80,10 +83,22 @@
         div?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest"});    
     }
 
+    // I would export them to be read only for binding, but not const within this component... not sure if theres a way to export read only and not be const   maybe could export a readable store   svelte seems to be doing this intentionally so source of truth is clearer, maybe I am supposed to use stores that are in ts files or something, maybe the socket code should be in a ts file too and update a messages store... yeah probably lol. If I feel like it I will rewrite everything this was just meant to be a draft originally
     let unreadMessagesBecauseYouAreScrolledUp = false;
     let unreadMessagesBecauseYouAreScrolledUpCount = 0;
     let unreadMessagesBecauseYouAreOutOfFocus = false;
     let unreadMessagesBecauseYouAreOutOfFocusCount = 0;
+
+    //not to be modified only read // maybe the data flow is bad, maybe the above data and the socket should be in a ts file. I do like the $: syntax that svelte provides though
+    export let tabTitlePrefixRecommendation:string = ""
+    $: {
+        tabTitlePrefixRecommendation = unreadMessagesBecauseYouAreOutOfFocus 
+            ? unreadMessagesBecauseYouAreOutOfFocusCount > 9 
+                ? "(9+)" 
+                :`(${unreadMessagesBecauseYouAreOutOfFocusCount})` 
+            : ""
+    }
+    
     
     function onScroll(){
         console.log("scrolled")
@@ -163,8 +178,23 @@
         
     }  
 
+    
+    
 
 </script>
+
+<!-- {#if unreadMessagesBecauseYouAreOutOfFocus}
+    ({unreadMessagesBecauseYouAreOutOfFocusCount}) 
+{/if}
+
+<svelte:head>
+    <title>
+        ({unreadMessagesBecauseYouAreOutOfFocusCount})
+        Encrypted Chatroom
+    </title>
+    
+    
+</svelte:head> -->
 
 <svelte:window on:focus={onFocus} on:scroll={onScroll}/>
 
