@@ -3,27 +3,26 @@
 	import { scrollToBottom } from "$lib/Components/utils";
 
     export let parentDiv:HTMLElement
-    export let showing = false
+    export let numberOfUnreadMessages:number;
 
     function onClick(){
         scrollToBottom(parentDiv)
-        showing = false
     }
 </script>
 
 
 
 
-{#if showing}
-    <button on:click={onClick}>
-        New Messages ⮟
-    </button>
-{/if}
+
+<button on:click={onClick}>
+    {numberOfUnreadMessages} New Messages ⮟
+</button>
 
 <style>
     button {
         position:fixed;
         bottom: 5px;
         left: 50%;
+        z-index: 100000000;
     }
 </style>

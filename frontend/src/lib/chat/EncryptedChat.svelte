@@ -8,6 +8,7 @@
 	import type { EncryptionHelper, ExportedKey } from "$lib/encryption";
 	import type { EncryptedTextObj } from "../../../../shared-types";
 	import { tick } from "svelte";
+	import NewMessagesAlert from "./NewMessagesAlert.svelte";
     
     const exampleMessageData:MessageData = {
         senderId: "dImX61BLaswpBoCsAADT",
@@ -79,11 +80,24 @@
         div?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest"});    
     }
 
-    let unreadMessages = false;
-
+    let unreadMessagesBecauseYouAreScrolledUp = false;
+    let unreadMessagesBecauseYouAreScrolledUpCount = 0;
+    let unreadMessagesBecauseYouAreOutOfFocus = false;
+    let unreadMessagesBecauseYouAreOutOfFocusCount = 0;
     
+    function onScroll(){
+        console.log("scrolled")
+        if (areScrolledToBottom(80)){
+            unreadMessagesBecauseYouAreScrolledUp = false;
+            unreadMessagesBecauseYouAreScrolledUpCount = 0;
+        }
+        
+    }
 
-    
+    function onFocus(){
+        unreadMessagesBecauseYouAreOutOfFocus = false;
+        unreadMessagesBecauseYouAreOutOfFocusCount = 0;
+    }
 
     socketOn("receive_encrypted_message", async (encryptedMessage, roomId)=>{
         console.log("received encrypted message", encryptedMessage)
@@ -94,20 +108,24 @@
         messagesData.push(messageData)
         messagesData = messagesData
 
+
+        //if not looking at tab
+        if (document.hasFocus() === false) {
+            unreadMessagesBecauseYouAreOutOfFocus = true
+            unreadMessagesBecauseYouAreOutOfFocusCount++;
+        }
+        
         //if already on bottom of the page scroll to bottom
-        const lookingAtNewMessages = areScrolledToBottom(80) && document.hasFocus()
+        const lookingAtNewMessages = areScrolledToBottom(80) /*&& document.hasFocus()*/
         if (lookingAtNewMessages) {
             scrollToBottom(div)
-            // unreadMessages = false
         }
         else {
-            unreadMessages = true
+            unreadMessagesBecauseYouAreScrolledUp = true
+            unreadMessagesBecauseYouAreScrolledUpCount++
         }
         
         
-        
-            
-        // onMessageReceived()
 
     })
 
@@ -145,11 +163,10 @@
         
     }  
 
-    
-
 
 </script>
 
+<svelte:window on:focus={onFocus} on:scroll={onScroll}/>
 
 {#if !joined_room || !encryption}
     <p>Connecting to Chat...</p>
@@ -164,10 +181,9 @@
         <SimpleForm buttonText="Send" onSubmit={sendMessage}/>
     </div>
 
-    {#if areScrolledToBottom(80)}
-        <!-- <div style="position:fixed; left:50%; bottom:50%; z-index:10000">
-            hi
-        </div> -->
+    {#if unreadMessagesBecauseYouAreScrolledUp}
+        <NewMessagesAlert parentDiv={div} numberOfUnreadMessages={unreadMessagesBecauseYouAreScrolledUpCount}/>
     {/if}
+    
 {/if}
 
