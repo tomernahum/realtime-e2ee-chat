@@ -175,7 +175,7 @@ async function _decryptText(cipher:BufferSource, iv:Uint8Array, key:CryptoKey) {
 function padText(text:string) {
     text += "10"
 
-    const PAD_CHECKPOINTS = [500, 2500, 5000, 10_000] as const //max length on server side is 11_000
+    const PAD_CHECKPOINTS = [1000, 2500, 5000, 10_000] as const //max length on server side is 11_000
 
     for (const pad_length of PAD_CHECKPOINTS) {
         if (text.length < pad_length) {
@@ -186,7 +186,7 @@ function padText(text:string) {
     // if (text.length > PAD_CHECKPOINTS.at(-1)) {
         //Do nothing
     // }
-    console.log("padded text", text)
+    // console.log("padded text", text.length, text)
 
     return text
 }

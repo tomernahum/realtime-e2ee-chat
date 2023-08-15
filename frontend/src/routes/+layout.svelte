@@ -17,12 +17,13 @@
         showSidebar = !showSidebar;
     }
 
-    let screenWidth:number; //window.innerwidth later down. This seems to work on android chrome, android firefox, windows firefox with privacy.resistfingerprinting on, windows brave. Something tells me all this anti fingerprinting tech does not work
+    let screenWidth:number = window.innerWidth; //updated later down window.innerwidth later down. This seems to work on android chrome, android firefox, windows firefox with privacy.resistfingerprinting on, windows brave. Something tells me all this anti fingerprinting tech does not work
     $: smallScreen = screenWidth < 700;
     
 
-
-    let showSidebar = smallScreen ? true : false;
+    const smallInitialScreen = screenWidth < 700
+    let showSidebar = smallInitialScreen ? false : true;
+    console.log(smallInitialScreen  )
 
 
     export const snapshot = {
