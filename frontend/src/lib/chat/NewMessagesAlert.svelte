@@ -31,6 +31,7 @@
         left: 0;
         right:0;
         margin: 0 auto;
+        width:fit-content;
         z-index: 100000000;
     }
 </style>
