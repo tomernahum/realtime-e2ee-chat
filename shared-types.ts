@@ -49,6 +49,8 @@ export interface ClientToServerEvents {
     ) => void;
     
     get_message_history: (roomId:string, callback:(messageHistory:EncryptedTextObj[])=>void)  =>void;
+
+    // Could combine join_room and get_message_history into 1 request
 }
         
 export interface InterServerEvents {

@@ -46,10 +46,13 @@
             socket.emit("get_message_history", roomId, async (messageHistory)=>{
                 await receiveMessageHistory(messageHistory)
                 got_old_messages=true
+                
+                await tick() //await two tics then scroll the chat down
+                scrollToBottom(div)
             })
     }
     //If we didn't get the message history within 10 seconds we assume the server/db is down
-    //Probably a more "clean" way of implementing this
+    //Definitely a more "clean" way of implementing this
     let failed_to_get_old_messages = false
     setTimeout(()=>{
         if (!got_old_messages) {
@@ -74,13 +77,16 @@
         console.log(historicalMessages)
         // messagesData.push(messageData)
         messagesData = [...messagesData, ...historicalMessages]
+
+        
     }
 
 
-    // Scroll to bottom on page load
     let div:HTMLDivElement;
+    // Scroll to bottom on page load 
     $: {
-        div?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest"});    
+        // div?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest"});  
+        // If it were it's own component then we could use onMount
     }
 
     // I would export them to be read only for binding, but not const within this component... not sure if theres a way to export read only and not be const   maybe could export a readable store   svelte seems to be doing this intentionally so source of truth is clearer, maybe I am supposed to use stores that are in ts files or something, maybe the socket code should be in a ts file too and update a messages store... yeah probably lol. If I feel like it I will rewrite everything this was just meant to be a draft originally
