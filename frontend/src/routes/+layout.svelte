@@ -6,6 +6,7 @@
     // TODO replace this with a svelte slot maybe and make this whole thing a component and maybe seperate the sidebar functionality from the styling idk
     
 	import { crossfade, fade, fly } from 'svelte/transition';
+	import { onMount } from 'svelte';
 
     $: currentPage = $page.url.pathname;
 
@@ -17,13 +18,17 @@
         showSidebar = !showSidebar;
     }
 
-    let screenWidth:number = window.innerWidth; //updated later down window.innerwidth later down. This seems to work on android chrome, android firefox, windows firefox with privacy.resistfingerprinting on, windows brave. Something tells me all this anti fingerprinting tech does not work
+    // let screenWidth:number = window.innerWidth; //updated later down window.innerwidth later down. This seems to work on android chrome, android firefox, windows firefox with privacy.resistfingerprinting on, windows brave. Something tells me all this anti fingerprinting tech does not work
+    let screenWidth:number; //updated later down window.innerwidth later down
     $: smallScreen = screenWidth < 700;
     
 
-    const smallInitialScreen = screenWidth < 700
-    let showSidebar = smallInitialScreen ? false : true;
-    console.log(smallInitialScreen  )
+    let showSidebar = false;
+    onMount(()=>{
+        const smallInitialScreen = window.innerWidth < 700
+        showSidebar = smallInitialScreen ? false : true;
+    })
+
 
 
     export const snapshot = {
