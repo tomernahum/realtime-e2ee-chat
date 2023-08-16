@@ -1,17 +1,10 @@
 <script lang="ts">
-    // TODO: maybe extract chat display into its own component and handle the scrolling behavior there, and make this component more like roompage and focused on handling socket and state 
-	import SimpleForm from "$lib/Components/SimpleForm.svelte";
 	import { SocketOnBuilder, socket } from "$lib/realtime";
 	import { onMount } from "svelte";
-	import Messages from "./Messages.svelte";
 	import { getValidatedMessageData, type MessageData } from "./chat";
-	import { areScrolledToBottom, scrollToBottom, scrollToBottomAction } from "$lib/Components/utils";
 	import type { EncryptionHelper, ExportedKey } from "$lib/encryption";
 	import type { EncryptedTextObj } from "../../../../shared-types";
-	import { tick } from "svelte";
-	import NewMessagesAlert from "./NewMessagesAlert.svelte";
-	import { page } from "$app/stores";
-	import { writable } from "svelte/store";
+	import Chat from "$lib/chat_2_test/Chat.svelte";
     
     const exampleMessageData:MessageData = {
         senderId: "dImX61BLaswpBoCsAADT",
@@ -30,7 +23,9 @@
     //-----
 
     const {socketOn, getMountFunction} = new SocketOnBuilder()
-    onMount(getMountFunction()) //should call mount function after the rest of the code is run i think. (in fact you could even call onmount from realtime.ts)
+    onMount(getMountFunction()) //this should call mount function after the rest of the code is run i think. (in fact you could even call onmount from realtime.ts)
+    
+    // All the socket stuff is handled in this component. If I were to rewrite maybe I'd try making it in a ts file and making it update a svelte-store of loaded chats
     //-----
 
     let joined_room = false;
@@ -47,12 +42,12 @@
                 await receiveMessageHistory(messageHistory)
                 got_old_messages=true
                 
-                await tick() //await two tics then scroll the chat down
-                scrollToBottom(div)
+                // await tick() //await two tics then scroll the chat down
+                // scrollToBottom(div)
             })
     }
     //If we didn't get the message history within 10 seconds we assume the server/db is down
-    //Definitely a more "clean" way of implementing this
+    //Definitely a more "clean" way of implementing this //TODO  it is inspired by the idea of the messagegetting service being totally seperate from the relaying service, though right now it isn't
     let failed_to_get_old_messages = false
     setTimeout(()=>{
         if (!got_old_messages) {
@@ -81,45 +76,6 @@
         
     }
 
-
-    let div:HTMLDivElement;
-    // Scroll to bottom on page load 
-    $: {
-        // div?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest"});  
-        // If it were it's own component then we could use onMount
-    }
-
-    // I would export them to be read only for binding, but not const within this component... not sure if theres a way to export read only and not be const   maybe could export a readable store   svelte seems to be doing this intentionally so source of truth is clearer, maybe I am supposed to use stores that are in ts files or something, maybe the socket code should be in a ts file too and update a messages store... yeah probably lol. If I feel like it I will rewrite everything this was just meant to be a draft originally
-    let unreadMessagesBecauseYouAreScrolledUp = false;
-    let unreadMessagesBecauseYouAreScrolledUpCount = 0;
-    let unreadMessagesBecauseYouAreOutOfFocus = false;
-    let unreadMessagesBecauseYouAreOutOfFocusCount = 0;
-
-    //not to be modified only read // maybe the data flow is bad, maybe the above data and the socket should be in a ts file. I do like the $: syntax that svelte provides though
-    export let tabTitlePrefixRecommendation:string = ""
-    $: {
-        tabTitlePrefixRecommendation = unreadMessagesBecauseYouAreOutOfFocus 
-            ? unreadMessagesBecauseYouAreOutOfFocusCount > 9 
-                ? "(9+)" 
-                :`(${unreadMessagesBecauseYouAreOutOfFocusCount})` 
-            : ""
-    }
-    
-    
-    function onScroll(){
-        console.log("scrolled")
-        if (areScrolledToBottom(80)){
-            unreadMessagesBecauseYouAreScrolledUp = false;
-            unreadMessagesBecauseYouAreScrolledUpCount = 0;
-        }
-        
-    }
-
-    function onFocus(){
-        unreadMessagesBecauseYouAreOutOfFocus = false;
-        unreadMessagesBecauseYouAreOutOfFocusCount = 0;
-    }
-
     socketOn("receive_encrypted_message", async (encryptedMessage, roomId)=>{
         console.log("received encrypted message", encryptedMessage)
         //TODO: double check that we can't be attacked by malicious data
@@ -128,26 +84,6 @@
 
         messagesData.push(messageData)
         messagesData = messagesData
-
-
-        //if not looking at tab
-        if (document.hasFocus() === false) {
-            unreadMessagesBecauseYouAreOutOfFocus = true
-            unreadMessagesBecauseYouAreOutOfFocusCount++;
-        }
-        
-        //if already on bottom of the page scroll to bottom
-        const lookingAtNewMessages = areScrolledToBottom(80) /*&& document.hasFocus()*/
-        if (lookingAtNewMessages) {
-            scrollToBottom(div)
-        }
-        else {
-            unreadMessagesBecauseYouAreScrolledUp = true
-            unreadMessagesBecauseYouAreScrolledUpCount++
-        }
-        
-        
-
     })
 
     async function sendMessage(message:string){
@@ -179,47 +115,22 @@
             }
 
             messagesData = messagesData;
-            scrollToBottom(div)
+            // scrollToBottom(div)
         })
         
     }  
 
     
-    
+    export let tabTitlePrefixRecommendation:string;
 
 </script>
-
-<!-- {#if unreadMessagesBecauseYouAreOutOfFocus}
-    ({unreadMessagesBecauseYouAreOutOfFocusCount}) 
-{/if}
-
-<svelte:head>
-    <title>
-        ({unreadMessagesBecauseYouAreOutOfFocusCount})
-        Encrypted Chatroom
-    </title>
-    
-    
-</svelte:head> -->
-
-<svelte:window on:focus={onFocus} on:scroll={onScroll}/>
-
 {#if !joined_room || !encryption}
     <p>Connecting to Chat...</p>
 {:else if !got_old_messages && !failed_to_get_old_messages}
     <p>Connecting to Chat... (retrieving message history)</p>
-    <!-- <p>Retrieving Message History</p> -->
 {:else}
-        
-    <!--  use:scrollToBottom={messagesData} -->
-    <div bind:this={div} style="padding-bottom:20px"> 
-        <Messages data={messagesData}/>
-        <SimpleForm buttonText="Send" onSubmit={sendMessage}/>
-    </div>
 
-    {#if unreadMessagesBecauseYouAreScrolledUp}
-        <NewMessagesAlert parentDiv={div} numberOfUnreadMessages={unreadMessagesBecauseYouAreScrolledUpCount}/>
-    {/if}
+    <Chat messagesData={messagesData} onSendMessage={sendMessage} bind:tabTitlePrefixRecommendation/>
     
 {/if}
 

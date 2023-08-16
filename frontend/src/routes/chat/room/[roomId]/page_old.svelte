@@ -4,7 +4,7 @@
 
     
 
-	import Chat from "$lib/chat/OldChat.svelte";
+	import Chat from "$lib/old/OldChat.svelte";
 	import EncryptedChat from "$lib/chat/EncryptedChat.svelte";
 	import { EncryptionHelper } from "$lib/encryption.js";
 	import { socketId } from "$lib/realtime";

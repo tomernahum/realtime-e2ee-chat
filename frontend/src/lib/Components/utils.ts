@@ -18,7 +18,12 @@ export function scrollToBottomAction(node:HTMLElement, data:any) {
 
 export async function scrollToBottom(node:HTMLElement) {
     await tick();
-    node.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest"});
+    if (node) {
+        node.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest"});
+    }
+    else {
+        console.warn("Didn't scroll to bottom as node was undefined")
+    }
 }
 
 export function areScrolledToBottom(leeway:number) {

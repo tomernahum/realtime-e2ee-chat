@@ -1,3 +1,7 @@
+Todo:
+- new messages centering when sidebar on
+
+
 
 Todo: 
 - ! Test what happens if database goes down and make it resilient

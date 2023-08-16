@@ -10,6 +10,8 @@
         onSubmit(value)
         value = ""
     }
+
+    //I would dispatch a svelte event but the typescript is bugged out right now so i just won't
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>

@@ -2,8 +2,8 @@
 	import SimpleForm from "$lib/Components/SimpleForm.svelte";
 	import { SocketOnBuilder, socket } from "$lib/realtime";
 	import { onMount } from "svelte";
-	import Messages from "./Messages.svelte";
-	import type { MessageData } from "./chat";
+	import Messages from "../chat/Messages.svelte";
+	import type { MessageData } from "../chat/chat";
 	import { scrollToBottomAction } from "$lib/Components/utils";
     
     const exampleMessageData:MessageData = {

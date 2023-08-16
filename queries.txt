@@ -4,3 +4,12 @@ order by id
 desc 
 limit 10
 ;
+
+
+select id, room_id, iv, cipher
+from encrypted_chat_message 
+where room_id = "fakeroom"
+order by id 
+desc 
+limit 10
+;
