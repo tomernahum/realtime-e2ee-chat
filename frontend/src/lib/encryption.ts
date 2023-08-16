@@ -192,7 +192,16 @@ function padText(text:string) {
 }
 
 function unPadText(text:string) {
-    return text.slice(0, text.lastIndexOf('1'))
+    //backwards compatibility
+    const x = text.lastIndexOf('10')
+    if (x === -1) {
+        return text
+    }
+    else{
+        return text.slice(0, x)
+    }
+
+    // return text.slice(0, text.lastIndexOf('1'))
 }
 
 
