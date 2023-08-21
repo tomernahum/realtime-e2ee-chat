@@ -5,7 +5,9 @@ import { socketIoServerUrl } from "./globals";
 // console.log("Pretty sure this file will run once??")
 
 
-export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(socketIoServerUrl)
+export const socket: Socket<
+    ServerToClientEvents, ClientToServerEvents
+> = io(socketIoServerUrl)
 
 // export function restartSocket(){
 //     socket.disconnect()
@@ -22,7 +24,7 @@ export const socketId = new Promise((resolve, reject)=>{
         if (socket.id === undefined) {
             reject("Couldn't connect to server probably")
         }
-    }, 10_000)
+    }, 10_000) // TODO This seems wrong?
 })
 
 socket.on("connect_error", (e) => {

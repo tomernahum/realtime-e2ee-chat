@@ -4,12 +4,13 @@
 
     export let parentDiv:HTMLElement
     export let numberOfUnreadMessages:number;
+    export let onClick: ()=>void;
 
     $: unreadMessagesDisplay = numberOfUnreadMessages > 99 ? "99+" : numberOfUnreadMessages
 
-    function onClick(){
-        scrollToBottom(parentDiv)
-    }
+    // function onClick(){
+    //     scrollToBottom(parentDiv)
+    // }
     // TODO: instead of scrolling to bottom scroll to the last unread message. Also do this automatically on page focus. Maybe the onclick will be handled by the parent then
 
 

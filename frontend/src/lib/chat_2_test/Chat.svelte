@@ -82,6 +82,11 @@
         console.log("qoihroqiwehrjoiqwjehroiqwhero")
     }
 
+
+    function onNewMessagesAlertClick(){
+        scrollToBottom(div)
+        unreadMessagesBecauseYouAreScrolledUp = false;
+    }
     
 </script>
 
@@ -97,5 +102,5 @@
 </div>
 
 {#if unreadMessagesBecauseYouAreScrolledUp}
-    <NewMessagesAlert parentDiv={div} numberOfUnreadMessages={unreadMessagesBecauseYouAreScrolledUpCount}/>
+    <NewMessagesAlert parentDiv={div} numberOfUnreadMessages={unreadMessagesBecauseYouAreScrolledUpCount} onClick={onNewMessagesAlertClick}/>
 {/if}
