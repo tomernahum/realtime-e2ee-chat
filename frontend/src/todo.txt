@@ -1,3 +1,24 @@
 Realtime is global but rooms is local to component
 
 I think it would be good to still listen for messages on all rooms if you change tab
+
+
+
+
+Todo Next:
+- Canonize Restructuring / Organize folders
+- Word wrap
+- disappearing rooms, (named rooms?)
+- Improve typing in box. So it expands.
+- Color contrast / (seeing your own color)
+- Favicon
+- Room Names
+
+- Many other features see kanban
+    - replies
+    - favicon changing
+
+- (Styling?)
+- Restructure website page structure w/ homepage for landing on etc
+    - plus basic SEO optimization / meta tags
+
