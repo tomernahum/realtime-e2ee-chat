@@ -1,6 +1,9 @@
 <script lang="ts">
     import '@fontsource/roboto/300.css';
     import '@fontsource/roboto/400.css';
+    import '@fontsource/roboto/500.css';
+
+
     // import '@fontsource/dseg14-modern'; //temp // Fun! we should add a font selection  setting
  
     import { page } from '$app/stores';
