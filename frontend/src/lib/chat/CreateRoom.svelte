@@ -1,4 +1,4 @@
-
+<!-- TODO: this might not pass the contrast check -->
 
 <script lang="ts">
 	import { generateExportedEncryptionKey } from "$lib/encryption";
@@ -60,10 +60,17 @@
             <input type="text">
         </label>
     </form> -->
-    <p>
+    <!-- <p>
         A room has been created. Access it at the url below.
         Send the url to friends through secure means to chat with them.
-    </p>
+    </p> -->
+    <div class="text" style="margin-bottom: 1rem;">
+        <p> A room has been created.</p>
+        <p style="margin-bottom: .4rem"> Access it at the url below.</p>
+        <p> Send the url to friends through secure means to chat with them.</p>
+    </div>
+
+
     <div id="link-div">
         <input type="text" value={roomUrl} readonly>
         
@@ -111,7 +118,7 @@
 
     button {
         border-radius: 8px;
-        border: 1px solid transparent;
+        border: 2px solid rgb(119, 119, 119);
         padding: 0.6em 1.2em;
         font-size: 1em;
         font-size: inherit;
@@ -119,11 +126,16 @@
         font-family: inherit;
         background-color: #1a1a1a;
         cursor: pointer;
-        transition: border-color 0.25s;
+        transition: border-color 0.3s;
+        /* transition: border-width 0.25s; */
+
+        /* border-style: ridge; */
 
     }
     button:hover {
         border-color: #646cff;
+        border-color: #b5b9ff;
+        /* border-width: 3px; */
     }
     button:focus,
     button:focus-visible {
@@ -149,9 +161,10 @@
     dialog * {
         text-align: center;
     }
-    dialog > p, dialog > input {
+    dialog > .text, #link-div {
         
         margin-bottom: .5rem;
+        /* margin-bottom: 1rem; */
     }
 
     dialog input {

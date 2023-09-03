@@ -19,7 +19,7 @@
 
 <nav>
 	
-	<Link href="/" on:linkClicked> Home </Link>
+	<Link href="/home" on:linkClicked> Home </Link>
 	<Link href="/chat" on:linkClicked> Chat </Link>
 	<!-- <Link href="/test" on:linkClicked> Test </Link> -->
 

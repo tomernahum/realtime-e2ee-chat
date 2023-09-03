@@ -167,6 +167,9 @@
 
     .page-container {
         margin-top: var(--header-height);
+        /* Margin is controlled by padding later down */
+
+        /* margin-top: calc(var(--header-height) + .5rem); */
         /* margin-top: 1rem; */
         /* TODO: I dont understand where its initial positioning is coming from anymore but this works for now... */
     }
@@ -254,7 +257,7 @@
     .page-container {
         min-height: 100%;
 
-        padding: .3rem .6rem;
+        padding: .6rem .6rem;
         padding-bottom: 1rem;
 
         /* height: 100%;
@@ -285,7 +288,7 @@
         max-width: 28rem;
 
         margin: 0 auto;
-        padding: 0 .5rem;
+        /* padding: 0 .5rem; */
     }
 
 
