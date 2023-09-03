@@ -1,7 +1,7 @@
 
 import { Server } from "socket.io"
 import type { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData } from "../../shared-types"
-import { Persister, PlanetScalePersister } from "./persistance/persister"
+import { EmptyPersister, Persister, PlanetScalePersister } from "./persistance/persister"
 
 const io = new Server<
     ClientToServerEvents,
@@ -14,7 +14,26 @@ const io = new Server<
     }
 })
 
-const persister:Persister = new PlanetScalePersister() //experimenting with dependency injection / OOP
+
+
+// const persister:Persister = new PlanetScalePersister() //experimenting with dependency injection / OOP
+let persister:Persister
+try {
+    persister = new PlanetScalePersister()
+    //@ts-ignore
+    await persister.ping()
+    // throw "testing"
+}
+catch (exception) {
+    // If database connection fails keep functioning without it
+    console.warn("Could not connect to database! any read or write attempts will fail")
+    console.warn(exception)
+
+    persister = new EmptyPersister()
+    // TODO attempt to reconect periodically
+}
+
+
 
 // const test = Math.random() > .5  
 // const persister = test ? new SupabasePersister() : new PlanetScalePersister()
@@ -24,6 +43,7 @@ const persister:Persister = new PlanetScalePersister() //experimenting with depe
 
 
 io.on("connection", (socket)=>{
+
     console.log("Connected !", socket.id)
 
 
@@ -97,6 +117,12 @@ io.on("connection", (socket)=>{
     socket.on("get_message_history", async (roomId, callback)=>{
         const x = await persister.getMessages(roomId)
         //TODO: pagination
-        callback(x)
+        
+        if (!(persister instanceof EmptyPersister)) {
+            callback(x)
+            //currently client listens for callback to gauge success, could also pass down success etc
+        }
+            
     })
 })
+

@@ -15,6 +15,23 @@ export interface Persister {
     getMessages(roomId:string): Promise<EncryptedTextObj[]>
 }
 
+export class EmptyPersister implements Persister{
+    db:ReturnType<typeof drizzle>
+    
+    constructor() { 
+    }
+
+    async saveMessage(roomId:string, message:EncryptedTextObj) {
+        return true
+    }
+    
+    
+    async getMessages(roomId:string) {
+        return []
+    }
+} 
+
+
 // PlanetScalePersister. If add more then put each persister in its own file maybe
 
 export class PlanetScalePersister implements Persister{
@@ -93,6 +110,10 @@ export class PlanetScalePersister implements Persister{
 
     async cleanUpRoom(){
         //TODO
+    }
+
+    async ping(){
+        await this.db.select().from(encryptedMessages).limit(1)
     }
 
 } 
