@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Chat from "$lib/old/OldChat.svelte";
 	import CreateRoomButton from "$lib/chat/CreateRoom.svelte";
 	import { socketId } from "$lib/realtime";
 

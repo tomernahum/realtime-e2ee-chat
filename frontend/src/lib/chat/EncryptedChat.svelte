@@ -4,7 +4,7 @@
 	import { getValidatedMessageData, type MessageData } from "./chat";
 	import type { EncryptionHelper, ExportedKey } from "$lib/encryption";
 	import type { EncryptedTextObj } from "../../../../shared-types";
-	import Chat from "$lib/chat_2_test/Chat.svelte";
+	import Chat from "$lib/chat/Chat.svelte";
     
     const exampleMessageData:MessageData = {
         senderId: "dImX61BLaswpBoCsAADT",

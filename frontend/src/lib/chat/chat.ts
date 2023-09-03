@@ -70,7 +70,7 @@ export async function getValidatedMessageData(encryptedMessage:EncryptedTextObj,
 
 
 
-function test(){
+// function test(){
     
 // console.log(getValidatedMessageData(""))
 // console.log(getValidatedMessageData(JSON.stringify("Hello")))
@@ -110,4 +110,4 @@ function test(){
 //         messageText: "Welcome to Chat"
 //     })).senderId)
 // )
-}
+// }
