@@ -121,11 +121,14 @@
         Svelte and SvelteKit for frontend
     </li>
     <li style="margin-top:.3rem">
-        SocketIO and NodeJS for relaying messages and saving them to db. 
+        SocketIO and NodeJS for relaying messages and saving them to db.
         <!-- <span class="note">(This could probably be replaced with something more performant)</span> -->
     </li>
     <li style="margin-top:.3rem">
-        MySQL with 2 columns (room_id and encrypted_data) and index on room_id for storing chat history
+        MySQL with 2 columns (room_id and encrypted_data) and index on room_id for storing chat history. Connected to on backend via DrizzleORM
+    </li>
+    <li style="margin-top:.3rem">
+        Typescript on frontend & backend & for defining the contract for possible socketio messages between them
     </li>
     <li style="margin-top:.3rem">
         Github for ci/cd: cloudflare pages cdn for frontend, railway.app for backend, planetscale for db. All free tier baby
