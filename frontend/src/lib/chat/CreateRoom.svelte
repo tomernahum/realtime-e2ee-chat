@@ -74,17 +74,17 @@
     <div id="link-div">
         <input type="text" value={roomUrl} readonly>
         
-        <button style="padding: 5px 5px" on:click={copyRoomUrl}>
+        <button class="small-button" on:click={copyRoomUrl}>
             {copyButtonText}
         </button>
         
     </div>
 
     <div>
-        <button on:click={closeModal} style="margin-top:15px">
+        <button on:click={closeModal} class="small-button close-button">
             Close
         </button>
-        <a href={roomUrl} on:click={closeModal}>
+        <a href={roomUrl} on:click={closeModal} class="go-there">
             Go there
             <!-- TODO: add icon -->
         </a>
@@ -146,15 +146,29 @@
         margin: .5rem 0
     }
 
+    .small-button {
+        padding: 5px 5px;
+    }
+    .close-button {
+        padding: 5px 13px
+    }
+
 
     a {
-        border: 1px solid transparent;
-        padding: 5px;
+        border: 2px solid #8c8cff;
+        padding: 5px 8px;
         border-radius: 8px;
+
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: bold;
+
+        transition: border-color .25s;
     }
 
     a:hover {
-        border-color: #646cff;
+        /* border-color: #a0a4ff; */
+        border-color: var(--text-color);
     }
 
 
@@ -165,6 +179,9 @@
         
         margin-bottom: .5rem;
         /* margin-bottom: 1rem; */
+    }
+    #link-div {
+        margin-bottom: .75rem;
     }
 
     dialog input {

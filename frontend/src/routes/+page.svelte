@@ -45,7 +45,7 @@
         work.
     </p>
     
-    <p style="margin-bottom: .6rem; padding-left:8px; border-left: 3px solid rgba(90,90,90,90)">
+    <p class="offset" style="margin-bottom: .6rem; ">
         If you're wondering how it works, browsers don't send the part after the <code>#</code> in the url to webservers, so this webapp encrypts/decrypts chat messages client side only, by using a symmetric AES-GCM key derived from the part after the # in the url of each chatroom
     </p>
 
@@ -181,5 +181,18 @@
         background: rgb(17, 17, 17);
         padding: 0 5px;
         border-radius: 5px;
+    }
+
+    .offset {
+        /* padding-left:8px;  */
+        /* border-top: 2px solid rgba(90,90,90,90);
+        border-bottom: 2px solid rgba(90,90,90,90);
+        padding-top: 4px;
+        padding-bottom: 4px; */
+
+        
+        background-color: rgba(72, 72, 72, 0.599);
+
+        padding: .31rem .62rem;
     }
 </style>
