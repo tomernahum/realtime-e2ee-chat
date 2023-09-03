@@ -71,10 +71,10 @@
 
 <div>
     <h5 style="margin-bottom: .3rem">
-        Disappearing rooms or Permanent ones
+        Disappearing rooms or permanent ones
     </h5>
     <p>
-        You have the option to select. (Not yet implemented)
+        You have the option to select. (Temporary rooms not yet implemented)
     </p>
 </div>
 
