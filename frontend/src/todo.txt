@@ -6,11 +6,11 @@ I think it would be good to still listen for messages on all rooms if you change
 
 
 Todo Next:
-- Canonize Restructuring / Organize folders
-- Word wrap
-- disappearing rooms, (named rooms?)
-- Improve typing in box. So it expands.
 - Color contrast / (seeing your own color)
+
+- disappearing rooms, (named rooms?)
+- pagination
+- Improve typing in box. So it expands.
 - Favicon
 - Room Names
 
@@ -22,3 +22,7 @@ Todo Next:
 - Restructure website page structure w/ homepage for landing on etc
     - plus basic SEO optimization / meta tags
 
+
+Done
+- Word wrap
+- Canonize Restructuring / Organize folders I think done
