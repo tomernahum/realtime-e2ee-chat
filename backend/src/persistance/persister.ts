@@ -11,8 +11,9 @@ import { connect } from "@planetscale/database";
 
 
 export interface Persister {
-    saveMessage(roomId:string, message:EncryptedTextObj): Promise<Boolean>,
-    getMessages(roomId:string): Promise<EncryptedTextObj[]>
+    saveMessage(roomId:string, message:EncryptedTextObj): Promise<Boolean>;
+    getMessages(roomId:string): Promise<EncryptedTextObj[]>;
+    ping:()=>Promise<void>;
 }
 
 export class EmptyPersister implements Persister{
@@ -28,6 +29,10 @@ export class EmptyPersister implements Persister{
     
     async getMessages(roomId:string) {
         return []
+    }
+
+    async ping() {
+        return
     }
 } 
 

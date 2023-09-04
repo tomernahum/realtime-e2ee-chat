@@ -48,7 +48,7 @@ export interface ClientToServerEvents {
         sentOrError?:(obj:{errorMessage?:string})=>void //Can add to params whether it successfully sent and whether successfully saved to db if necessary
     ) => void;
     
-    get_message_history: (roomId:string, callback:(messageHistory:EncryptedTextObj[])=>void)  =>void;
+    get_message_history: (roomId:string, callback:(messageHistory:EncryptedTextObj[]|"failed")=>void)  =>void;
 
     // Could combine join_room and get_message_history into 1 request
 }

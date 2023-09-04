@@ -1,20 +1,12 @@
 <script lang="ts">
     import { socket } from "$lib/realtime";
-	import type { MessageData } from "./chat";
+	import { stringToHue, type MessageData } from "./chat";
 
     export let data:MessageData;
 
     $: isMine = data.senderId === socket.id;
 
-    function stringToHue(s:string){
-        let hash = 0;
-        if (s.length === 0) return hash;
-        for (var i = 0; i < s.length; i++) {
-            hash = s.charCodeAt(i) + ((hash << 5) - hash);
-            hash = hash & hash;
-        }
-        return hash % 360;
-    }
+    
     
     let customHue = stringToHue(data.senderId)
 

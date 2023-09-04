@@ -39,11 +39,13 @@
     $: {
         if (!got_old_messages)
             socket.emit("get_message_history", roomId, async (messageHistory)=>{
-                await receiveMessageHistory(messageHistory)
-                got_old_messages=true
-                
-                // await tick() //await two tics then scroll the chat down
-                // scrollToBottom(div)
+                if (messageHistory == "failed") {
+                    failed_to_get_old_messages = true
+                }
+                else {
+                    await receiveMessageHistory(messageHistory)
+                    got_old_messages=true
+                }
             })
     }
     //If we didn't get the message history within 10 seconds we assume the server/db is down
@@ -59,7 +61,7 @@
             messagesData[0] = {
                 senderId: "dImX61BLaswpBoCsAADT",
                 senderDisplayName: "ttools",
-                messageText: "Failed to get Message History, but you might still be able to see new messages showing up"
+                messageText: "Failed to get Message History, but you should still be able to see new messages as they show up"
             }
     }
     

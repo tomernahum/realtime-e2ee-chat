@@ -26,7 +26,7 @@
         const roomId = crypto.randomUUID().slice(0,8)
         const key = await generateExportedEncryptionKey()
         
-        roomUrl = `${window.location.origin}/chat/room/${roomId}#${key}`
+        roomUrl = `${window.location.origin}/room/${roomId}#${key}`
         console.log(key)
         
         dialogElement.showModal()

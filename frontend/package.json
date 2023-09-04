@@ -7,6 +7,9 @@
 		"build": "vite build",
 		"preview-cloudflare-pages": "wrangler pages dev ./build",
 		"preview": "vite preview",
+		"build-preview": "npm run build && npm run preview-cloudflare-pages",
+
+
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",

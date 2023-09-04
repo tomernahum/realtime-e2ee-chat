@@ -7,6 +7,7 @@
 	import NewMessagesAlert from "$lib/chat/NewMessagesAlert.svelte";
 	import type { MessageData } from "$lib/chat/chat";
 	import { onMount, tick } from "svelte";
+	import SendMessageBox from "./SendMessageBox.svelte";
     
     let div:HTMLDivElement;
 
@@ -98,7 +99,7 @@
 
 <div bind:this={div} style="padding-bottom:20px"> 
     <Messages data={messagesData}/>
-    <SimpleForm buttonText="Send" onSubmit={onSendMessage}/>
+    <SendMessageBox {onSendMessage}/>
 </div>
 
 {#if unreadMessagesBecauseYouAreScrolledUp}

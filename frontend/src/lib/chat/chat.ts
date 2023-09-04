@@ -60,9 +60,21 @@ export async function getValidatedMessageData(encryptedMessage:EncryptedTextObj,
 
     return out
     
+    // Be aware of XSS vunerability for instance if someone sends you an image it might be able to grab your url and send it to a server while fetching the image
     
 }
 
+export function stringToHue(s:string){
+    let hash = 0;
+    if (s.length === 0) return hash;
+    for (var i = 0; i < s.length; i++) {
+        hash = s.charCodeAt(i) + ((hash << 5) - hash);
+        hash = hash & hash;
+    }
+    return hash % 360;
+
+    // background-color: hsl({customHue}, 80%, 50%);
+}
 
 
 

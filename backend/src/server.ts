@@ -2,6 +2,7 @@
 import { Server } from "socket.io"
 import type { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData } from "../../shared-types"
 import { EmptyPersister, Persister, PlanetScalePersister } from "./persistance/persister"
+import { time } from "console"
 
 const io = new Server<
     ClientToServerEvents,
@@ -19,10 +20,8 @@ const io = new Server<
 // const persister:Persister = new PlanetScalePersister() //experimenting with dependency injection / OOP
 let persister:Persister
 try {
-    persister = new PlanetScalePersister()
-    //@ts-ignore
-    await persister.ping()
-    // throw "testing"
+    persister = new PlanetScalePersister();
+    await persister.ping();
 }
 catch (exception) {
     // If database connection fails keep functioning without it
@@ -120,7 +119,9 @@ io.on("connection", (socket)=>{
         
         if (!(persister instanceof EmptyPersister)) {
             callback(x)
-            //currently client listens for callback to gauge success, could also pass down success etc
+        }
+        else {
+            callback("failed")
         }
             
     })
