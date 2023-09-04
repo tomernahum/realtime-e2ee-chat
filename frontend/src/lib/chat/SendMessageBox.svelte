@@ -17,6 +17,19 @@
 
 <form on:submit|preventDefault={handleSubmit}>
     <input type="text" bind:value={value} >
+    <!-- TODO -->
+    <!-- <span 
+        class="input" 
+        role="textbox" 
+        contenteditable
+        style="width: 100%"
+        bind:textContent={value}
+    >
+        {value}
+    </span> -->
+    
+
+    
     <button class="send-button" type="submit" 
     style="background: hsl({hue}, 80%, 50%);
     color:{textColor}; border-color: hsl({hue}, 80%, 90%);"
@@ -25,7 +38,9 @@
     </button>
     <!-- <button>Send</button>   -->
 </form>
-
+<pre>
+    {value}
+</pre>
 <style>
     .send-button {
         padding: 1px 16px;

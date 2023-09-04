@@ -23,7 +23,7 @@
     }
     //TODO: Should probably move this into the component and just pass the encryption key lol. only thing needed to figure out is pasisng up errors
 
-    const roomTitle = "Encrypted Chat"
+    const roomTitle = "Encrypted Chatroom"
     let tabTitlePrefix:string = "";
     $: pageTitle = `${tabTitlePrefix} ${roomTitle}`
 
@@ -33,6 +33,10 @@
     hash = window.location.hash //we need to update this because sveltekit doesn't reload the page when hash updates.... maybe i could force reload idk
   }}
 />
+
+<svelte:head>
+    <title>{pageTitle}</title>
+</svelte:head>
 
 <div>
     <h1>Encrypted Chat</h1>
@@ -54,9 +58,6 @@
 
 <br>
 
-<svelte:head>
-    <title>{pageTitle}</title>
-</svelte:head>
 
 {#if !encryption}
     <p>Loading encryption module</p>
