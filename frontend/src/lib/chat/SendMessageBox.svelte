@@ -11,23 +11,41 @@
     }
 
     const hue = stringToHue(socket.id)
+    const textColor = "black" // TODO make it white if hue is too dark. Also rework hue perhaps
 </script>
 
 
 <form on:submit|preventDefault={handleSubmit}>
     <input type="text" bind:value={value} >
-    <button class="small-button" type="submit" style="background-color: hsl({hue}, 80%, 50%);">
+    <button class="send-button" type="submit" 
+    style="background: hsl({hue}, 80%, 50%);
+    color:{textColor}; border-color: hsl({hue}, 80%, 90%);"
+    >
         Send
     </button>
+    <!-- <button>Send</button>   -->
 </form>
 
 <style>
-    .small-button {
-        padding: 1px 8px;
+    .send-button {
+        padding: 1px 16px;
         font-weight: inherit;
         margin:0;
         text-align: center;
         display: inline;
+
+        /* border-radius: 3px; */
+        border-radius: 4px;
+        border-width: 1.5px;
+        border-style:solid;
+    }
+    .send-button:active:hover{
+        filter:brightness(1.15) saturate(1);
+        /* filter:brightness(0.85) saturate(1.1);  */
+    }
+    .send-button:hover {
+        filter:brightness(1.05) saturate(1.1);
+        /* filter:brightness(0.95) saturate(1.1);  */
     }
 
     input {
