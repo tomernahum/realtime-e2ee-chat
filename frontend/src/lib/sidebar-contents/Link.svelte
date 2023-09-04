@@ -9,7 +9,12 @@
 
 
     $: currentPage = $page.url.pathname;
-    $: isCurrentPage = href==="/" ? currentPage===href : currentPage.startsWith(href)
+    $: isCurrentPage = href==="/" 
+		? currentPage===href 
+		: currentPage.startsWith("/room") //make /room highlight chat link
+			? href==="/chat"
+			: currentPage.startsWith(href)
+	
 	
 	function handleClick() {
 		dispatch('linkClicked');
