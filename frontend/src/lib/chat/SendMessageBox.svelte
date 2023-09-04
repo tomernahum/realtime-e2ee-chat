@@ -6,8 +6,9 @@
 
     let value = ""
     function handleSubmit(){
-        onSendMessage(value)
+        const v = value
         value = ""
+        onSendMessage(v)
     }
 
     const hue = stringToHue(socket.id)
