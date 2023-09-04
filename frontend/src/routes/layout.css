@@ -39,10 +39,11 @@
     font-family: 'DSEG14 Modern', 'Roboto', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-    font-size: 24px;
+    
     color: var(--text-color);
 
-    
+    font-size: 1.5rem;
+    /* font-size: 24px; */
 
 
     font-synthesis: none;
@@ -61,6 +62,7 @@ html, body{
     height: 100%;
 
     background-color: var(--main-background);
+    /* font-size: 1.2rem; */
 }
 
 *, *::before, *::after {
