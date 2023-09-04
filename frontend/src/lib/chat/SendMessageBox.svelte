@@ -39,7 +39,7 @@
     </button>
     <!-- <button>Send</button>   -->
 </form>
-<pre>{value}</pre>
+<!-- <pre>{value}</pre> -->
 <style>
     .send-button {
         padding: 5px 16px;
