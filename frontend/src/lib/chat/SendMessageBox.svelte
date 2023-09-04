@@ -41,7 +41,7 @@
 <pre>{value}</pre>
 <style>
     .send-button {
-        padding: 1px 16px;
+        padding: 5px 16px;
         font-weight: inherit;
         margin:0;
         text-align: center;
