@@ -36,7 +36,8 @@
 
         /* border-radius: 3px; */
         border-radius: 4px;
-        border-width: 1.5px;
+        /* border-width: 1.5px; */
+        border-width: 0;
         border-style:solid;
     }
     .send-button:active:hover{
