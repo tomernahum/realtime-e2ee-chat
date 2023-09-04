@@ -22,8 +22,8 @@
         class="input" 
         role="textbox" 
         contenteditable
-        style="width: 100%"
-        bind:textContent={value}
+        style="width: calc(100% - 100px); background: #000000"
+        bind:innerText={value}
     >
         {value}
     </span> -->
@@ -38,9 +38,7 @@
     </button>
     <!-- <button>Send</button>   -->
 </form>
-<pre>
-    {value}
-</pre>
+<pre>{value}</pre>
 <style>
     .send-button {
         padding: 1px 16px;
