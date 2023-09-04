@@ -8,6 +8,10 @@
 
 </script>
 
+<svelte:head>
+    <title>EasyChatRoom - Chat</title>
+</svelte:head>
+
 <div>
     <h1>Chat</h1>
     <!-- <p>url hash: {hash}</p> -->

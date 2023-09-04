@@ -2,6 +2,8 @@
     import '@fontsource/roboto/300.css';
     import '@fontsource/roboto/400.css';
     import '@fontsource/roboto/500.css';
+    import '@fontsource/roboto/700.css';
+    import '@fontsource/roboto/900.css';
 
 
     // import '@fontsource/dseg14-modern'; //temp // Fun! we should add a font selection  setting
@@ -14,6 +16,7 @@
     
 	import { crossfade, fade, fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
+	import HeaderTitle from './HeaderTitle.svelte';
 
     $: currentPage = $page.url.pathname;
 
@@ -69,7 +72,7 @@
     
     
     <header class="top-bar">
-        <h1>Realtime Test App!</h1>
+        <h1><HeaderTitle /></h1>
         <!-- TODO: h1 may not be semantically appropriate I'm not sure maybe that should be for pages? -->
     </header>
 

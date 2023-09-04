@@ -4,7 +4,14 @@
 </script>
 
 
-<h1> EasyChatRoom </h1>
+<svelte:head>
+    <title>EasyChatRoom - Home</title>
+</svelte:head>
+
+
+<h1 style="margin-top:1rem; margin-bottom:.2rem"> 
+    EasyChatRoom 
+</h1>
 <p> 
     Create a secure<span class="note">(er than average 
         <span class="note-2">(i'm guessing)</span>)
@@ -18,9 +25,9 @@
 
 <CreateRoom />
 <br>
-<br style="margin-bottom: .5rem;">
+<br style="margin-bottom: 2rem;">
 <hr>
-<br>
+<br style="margin-bottom: .3rem;">
 <div>
     <h5 style="margin-bottom: .3rem">
         Features end-to-end encryption via a secret key stored in the URL
@@ -74,7 +81,7 @@
         Disappearing rooms or permanent ones
     </h5>
     <p>
-        You have the option to select. (Temporary rooms not yet implemented)
+        You have the option to select. (Disapearing rooms not yet implemented)
     </p>
 </div>
 
@@ -110,6 +117,7 @@
     
 </div>
 
+{#if false}
 <br>
 <div style="margin-bottom: 50vh;" />
 <hr>
@@ -146,12 +154,15 @@
     
 </div>
 
+{/if}
 
 
 
 
 
-<div style="margin-bottom: 100vh;" />
+
+
+<div style="margin-bottom: 60vh;" />
 
 
 
@@ -171,6 +182,7 @@
         font-size: .9rem;
         font-size: 1.3rem;
         line-height: normal;
+        font-weight:500;
     }
 
     strong {
@@ -195,4 +207,10 @@
 
         padding: .31rem .62rem;
     }
+
+    h1 {
+        text-decoration:underline 3px;
+        font-weight: bolder;
+    }
+
 </style>
