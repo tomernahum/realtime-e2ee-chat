@@ -62,7 +62,7 @@ html, body{
     height: 100%;
 
     background-color: var(--main-background);
-    /* font-size: 1.2rem; */
+    /* font-size: 1.5rem; */
 }
 
 *, *::before, *::after {

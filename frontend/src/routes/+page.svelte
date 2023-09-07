@@ -104,13 +104,13 @@
 
 <div>
     <p style="margin-bottom: .2rem;">
-        <a href="https://ttools.io" >
+        <a href="http://ttools.io" >
             Feel free to contact me
         </a>
     </p>
     <p style="margin-bottom: .1rem;">
         
-        <a href="https://ttools.io" target="_blank">
+        <a href="http://ttools.io" target="_blank">
             More tools
         </a>
     </p>
