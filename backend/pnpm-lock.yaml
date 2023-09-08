@@ -15,7 +15,7 @@ dependencies:
     specifier: ^16.3.1
     version: 16.3.1
   drizzle-orm:
-    specifier: ^0.28.1
+    specifier: ^0.28.5
     version: 0.28.5(@planetscale/database@1.11.0)(mysql2@3.6.0)
   mysql2:
     specifier: ^3.6.0
@@ -32,7 +32,7 @@ devDependencies:
     specifier: ^20.5.9
     version: 20.5.9
   drizzle-kit:
-    specifier: ^0.19.12
+    specifier: ^0.19.13
     version: 0.19.13
   nodemon:
     specifier: ^3.0.1

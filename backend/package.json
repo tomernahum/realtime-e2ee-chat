@@ -1,14 +1,14 @@
 {
   "devDependencies": {
     "@types/node": "^20.5.9",
-    "drizzle-kit": "^0.19.12",
+    "drizzle-kit": "^0.19.13",
     "nodemon": "^3.0.1"
   },
   "dependencies": {
     "@digitak/esrun": "^3.2.24",
     "@planetscale/database": "^1.10.0",
     "dotenv": "^16.3.1",
-    "drizzle-orm": "^0.28.1",
+    "drizzle-orm": "^0.28.5",
     "mysql2": "^3.6.0",
     "socket.io": "^4.7.0",
     "ts-node": "^10.9.1"

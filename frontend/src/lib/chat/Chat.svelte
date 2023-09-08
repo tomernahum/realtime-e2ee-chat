@@ -47,7 +47,7 @@
             unreadMessagesBecauseYouAreScrolledUpCount++
         }
 
-        console.log(unreadMessagesBecauseYouAreOutOfFocus, unreadMessagesBecauseYouAreOutOfFocusCount)
+        // console.log(unreadMessagesBecauseYouAreOutOfFocus, unreadMessagesBecauseYouAreOutOfFocusCount)
 
     }
 
@@ -80,7 +80,7 @@
                 ? "(9+)" 
                 :`(${unreadMessagesBecauseYouAreOutOfFocusCount})` 
             : ""
-        console.log("qoihroqiwehrjoiqwjehroiqwhero")
+        // console.log("qoihroqiwehrjoiqwjehroiqwhero")
     }
 
 

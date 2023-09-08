@@ -13,3 +13,9 @@ order by id
 desc 
 limit 10
 ;
+
+
+delete 
+from encrypted_chat_message 
+where room_id = "fakeroom"
+; 

@@ -71,7 +71,7 @@
                 return await getValidatedMessageData(encryptedMessage, encryption)
             })
         )
-        console.log(historicalMessages)
+        console.log("recieved message history", historicalMessages)
         // messagesData.push(messageData)
         messagesData = [...messagesData, ...historicalMessages]
 

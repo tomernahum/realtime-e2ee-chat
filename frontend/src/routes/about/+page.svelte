@@ -43,9 +43,61 @@
     <p class="note">
         But it is good enough!
     </p>
-
-    
 </div>
+
+<br>
+<br>
+<!-- 
+<div>
+    <h3>Cryptography</h3>
+
+    <p style="margin-top:.3rem">
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto">
+            Web Crypto Api
+        </a> is used for encryption/decryption, this is provided by the browser. The algorithm used is AES-GCM with a 128-bit key. Some more details on how it is used are further down.
+    </p>
+
+    <p style="margin-top:.3rem">
+        Each chatroom has it's own symmetric key that is used to encrypt/decrypt outgoing/incoming messages.
+        This key is exported through a method in the web crypto api, and stored in the url of the chatroom. 
+    </p>
+    <p style="margin-top:.3rem">
+        Since it is stored in the url after a <code>#</code> character, the browser will not send it to our server when requesting a webpage. However when our website loads, it's code can run client side to grab the key from the url and use it with the Web Crypto Api to encryt/decrypt messages.
+    </p>
+    <p style="margin-top:.3rem">
+        The intended use case is that a user shares the room url with their chat partners, complete with the key. It is up to the users to share it in a secure way if they don't want anyone else to see the key. (If a user loads a chatroom without an invalid key the application will display an error. If the user loads the chatroom with a different, but still valid key, they will be able to send messages but people without the same key will not be able to decrypt them and will see an error for that one message.)
+    </p>
+    <p style="margin-top:.3rem">
+        But in any case I (the server administrator) won't be able to see messages, at least in theory. 
+    </p>
+    <p style="margin-top:.3rem">
+        In practice I actually do know a way to hack my own service (this applies to all end-to-end encryption on the web by the way, I hope this changes). But at least if I did use this method it would be pretty unambigious that I am being malicious and breaking people's trust, more unambigious than a server administrator looking at the database and reading people's chat messages I think. The method is serving malicious javascript code from my servers when you load the webpage, more on this further down under "known vunerabilities"
+    </p>
+
+
+
+    <p style="margin-top:.3rem">
+        When you press the "Create Room" button, all it really does is find an unused room id (currently it just picks a random id), and generates a random key that is to be associated with the room. However what key i
+    </p>
+
+    <br>
+
+    <p style="margin-top:.3rem">
+        The key is randomly generated through a method provided by the Web Crypto Api as well. The key is exported and imported through a method in the api that returns a jwk. However we throw out all fields of the jwk except for the k field (the part that's actually a key) and hardcode the others when we import. The hardcoded parameters are as follows:
+    </p>
+    
+<pre style="background-color: black; padding: 0 .25rem">
+alg: "A128GCM",
+ext: true,
+key_ops: ["encrypt", "decrypt"],
+kty: "oct",
+</pre>
+    
+    <br>
+    
+    
+    
+</div> -->
 
 
 <div style="margin-bottom: 50vh;" />
