@@ -44,18 +44,19 @@
     <p>room: {roomId}</p>
     <p>key: {encryptionKey}</p>
     
-    <p>socketId: 
+    <p style="margin-top:1rem">Send the url of this page to those you want to chat with</p>
+    <p style="margin-top:.2rem">Anyone with the url can read and send to this chatroom</p>
+    <!-- <p>socketId: 
         {#await socketId}
             connecting...
         {:then socketId} 
             {socketId}
         {/await}
-    </p>
+    </p> -->
     <!-- <br> -->
     <p></p>
 
 </div>
-
 <br>
 
 
