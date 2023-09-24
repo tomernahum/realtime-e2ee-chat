@@ -99,7 +99,7 @@ kty: "oct",
 
     <br>
 
-    <h4> Known Vulnerabilities </h4>
+    <h4> Known Potential Vulnerabilities </h4>
     <ol style="padding-left:0">
         <li> 
             <p> 
@@ -150,11 +150,11 @@ kty: "oct",
             <p>
                 My idea is for the browser to automatically verify code every time you download it to make sure it is the same code that would have been compiled from the open source code on github/etc that the community has audited. A similar idea to this is used for third party scripts in the <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">
                     Subresource Integrity API
-                </a>. I don't have the time or expertise to make an extension like that myself right now though, maybe you want to do it? Or you have a better idea?
+                </a>. I don't have the expertise or inclination (right now) to make an extension like that myself though, maybe you want to do it? Or you have a better idea?
             </p>
             <br>
             <p>
-                Let me know if you have any ways to mitigate this. Put them in this chatroom ig: <a href="https://chat.ttools.io/room/06b1c1b7#8pUwBJInz85czS4rb1KZ0g">/room/06b1c1b7#8pUwBJInz85czS4rb1KZ0g</a>
+                Let me know if you have know any ways to mitigate/fix this. Put them in <a href="https://chat.ttools.io/room/06b1c1b7#8pUwBJInz85czS4rb1KZ0g">this chatroom</a>  ig: 
             </p>
             <!-- <p>
                 You can see what code you are running in a browser through the inspect feature, however nobody is going to audit this code every time it is downloaded. And for a website such as this that code is downloaded every time you load/refresh the tab. I could make this a PWA to mitigate the number of times new code is downloaded, but it would still be downloaded at least once per person that loads the site.
@@ -162,6 +162,30 @@ kty: "oct",
             <p>
                 For traditional downloaded desktop/mobile applications, you download the code from either a website or an app store, and you can (hypothetically) scan the binaries to make sure that they are the exact same binaries that are generated from the source code that you trust. I think you can do that at least. And I think google play and apple store actually do this on your behalf, and they server the same version of the app to all users
             </p> -->
+        </li>
+        <li>
+            <p>
+                Any app has some vulnerability in it that smart enough hackers can uncover (and rich enough institutions can buy from those hackers). 
+                For instance: <a href="https://techcrunch.com/2023/08/19/cellebrite-asks-cops-to-keep-its-phone-hacking-tech-hush-hush/">Some</a>
+                <a href="https://en.wikipedia.org/wiki/Pegasus_(spyware)">examples</a>  of hacking tools.
+            </p>
+            <p>
+                These vulnerabilities can be in the implementation of the software or the system of encryption. I think the system of encryption can be mathematically proven to be secure given certain definitions of security.
+            </p>
+            <p>
+                For bigger and more reputable software, there are ethical security experts and hackers auditing the software for vulnerabilities, which they report to the company and the company fixes them. Thus in order to hack the software attackers generally need to  
+            </p>
+            <p>
+                However I am not an expert on implementation nor encryption, and I have not had my system audited by an expert. I do try my best though.
+            </p>
+            <p>
+                So in addition to the fact that any app probably has some vulnerabilities, mine probably has some more obvious, low-hanging fruit ones that it doesn't cost a ton of time/money to figure out
+            </p>
+            
+                
+            
+
+            
         </li>
     </ol>
     
