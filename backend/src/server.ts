@@ -25,8 +25,8 @@ try {
 }
 catch (exception) {
     // If database connection fails keep functioning without it
-    console.warn("Could not connect to database! any read or write attempts will fail")
     console.warn(exception)
+    console.warn("Could not connect to database! any read or write attempts will fail")
 
     persister = new EmptyPersister()
     // TODO attempt to reconect periodically

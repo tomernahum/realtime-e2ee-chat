@@ -1,8 +1,8 @@
 {
   "devDependencies": {
     "@types/node": "^20.5.9",
-    "drizzle-kit": "^0.19.13",
-    "nodemon": "^3.0.1"
+    "bun": "^1.0.6",
+    "drizzle-kit": "^0.19.13"
   },
   "dependencies": {
     "@digitak/esrun": "^3.2.24",
@@ -14,7 +14,7 @@
     "ts-node": "^10.9.1"
   },
   "scripts": {
-    "dev": "nodemon src/server.ts",
+    "dev": "bun --watch src/server.ts",
     "start": "esrun src/server.ts"
   },
   "name": "backend",
