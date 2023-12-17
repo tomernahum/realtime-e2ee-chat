@@ -19,3 +19,8 @@ delete
 from encrypted_chat_message 
 where room_id = "fakeroom"
 ; 
+
+delete 
+from encrypted_chat_message 
+where id = 69420
+; 

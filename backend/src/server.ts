@@ -109,7 +109,7 @@ io.on("connection", (socket)=>{
             callback({}) //mark as sent. Do this before saving to db to reduce latency / not rely on db
 
         //Save message to database
-        await persister.saveMessage(roomId, encryptedMessage)
+        await persister.saveMessage(roomId, encryptedMessage) //todo will crash if database is down i think
     })
 
     //This could also just be a REST type call. The cool thing about not doing that is that you can return and then keep running code in the function after. Although i guess you could do something like that by not awaiting async functions

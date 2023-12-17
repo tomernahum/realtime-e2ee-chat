@@ -3,6 +3,7 @@
 Parts:
 - Socket IO server
     - To setup you need to create a .env and put the appropriate vars in there to connect to your database. Also note that planetscale likes to sleep development branches
+        - If you don't set up the database it should still work just without persisting anything, but should still relay chats
     - To run in dev: cd backend && npm run dev
     - To run in prod: currently just doing npm run start (which runs esrun, which compiles the ts on start, idk if it's as efficient as compiling into the same file directory or not like in vite, but configuring typescript is a pain)
         - you could also use bun
