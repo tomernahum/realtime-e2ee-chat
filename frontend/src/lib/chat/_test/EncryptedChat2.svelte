@@ -1,10 +1,10 @@
 <script lang="ts">
     
 	import type { EncryptionHelper } from "$lib/encryption";
-	import type { MessageData } from "../chat";
+	import type { MessageData } from "../chatDisplay/chat";
     import EncryptedChatGeneric from "$lib/chat/test/EncryptedChatGeneric.svelte";
 	import { scrollToBottomAction } from "$lib/Components/utils";
-	import Messages from "../Messages.svelte";
+	import Messages from "../chatDisplay/Messages.svelte";
 	import SimpleForm from "$lib/Components/SimpleForm.svelte";
 
 

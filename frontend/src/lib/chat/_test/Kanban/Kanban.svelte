@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { MessageData } from "$lib/chat/chat";
+	import type { MessageData } from "$lib/chat/chatDisplay/chat";
 	import { calculateKanBanState } from "./kanbanData";
 
 

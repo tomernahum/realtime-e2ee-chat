@@ -4,9 +4,9 @@
 	import { getValidatedMessageData, type MessageData } from "./chat";
 	import type { EncryptionHelper, ExportedKey } from "$lib/encryption";
 	import type { EncryptedTextObj } from "../../../../shared-types";
-	import Chat from "$lib/chat/Chat.svelte";
+	import Chat from "$lib/chat/chatDisplay/Chat.svelte";
     
-    const exampleMessageData:MessageData = {
+    const defaultMessageData:MessageData = {
         senderId: "dImX61BLaswpBoCsAADT",
         senderDisplayName: "ttools",
         messageText: "Welcome to Chat"
@@ -15,7 +15,7 @@
     //-----
 
     export let displayName = "Default"
-    export let messagesData:MessageData[] = [exampleMessageData] //
+    export let messagesData:MessageData[] = [defaultMessageData] //
     export let roomId = ""
     // export let encryptionKey:ExportedKey;
     export let encryption:EncryptionHelper
@@ -71,7 +71,7 @@
                 return await getValidatedMessageData(encryptedMessage, encryption)
             })
         )
-        console.log("recieved message history", historicalMessages)
+        console.log("received message history", historicalMessages)
         // messagesData.push(messageData)
         messagesData = [...messagesData, ...historicalMessages]
 

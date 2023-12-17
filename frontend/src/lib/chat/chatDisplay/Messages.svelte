@@ -2,7 +2,7 @@
 	import { socket } from "$lib/realtime";
 	import { tick } from "svelte";
     import Message from "./Message.svelte";
-    import type {MessageData} from "./chat"
+    import type {MessageData} from "../chat"
 	import { scrollToBottomAction } from "$lib/Components/utils";
 
 

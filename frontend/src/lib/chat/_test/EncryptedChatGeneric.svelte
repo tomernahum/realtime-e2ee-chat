@@ -2,8 +2,8 @@
 	import SimpleForm from "$lib/Components/SimpleForm.svelte";
 	import { SocketOnBuilder, socket } from "$lib/realtime";
 	import { onMount } from "svelte";
-	import Messages from "../Messages.svelte";
-	import { getValidatedMessageData, type MessageData } from "../chat";
+	import Messages from "../chatDisplay/Messages.svelte";
+	import { getValidatedMessageData, type MessageData } from "../chatDisplay/chat";
 	import { scrollToBottomAction } from "$lib/Components/utils";
 	import type { EncryptionHelper, ExportedKey } from "$lib/encryption";
 	import type { EncryptedTextObj } from "../../../../../shared-types";

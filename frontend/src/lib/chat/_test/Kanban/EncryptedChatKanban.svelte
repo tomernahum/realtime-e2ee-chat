@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { EncryptionHelper } from "$lib/encryption";
-	import type { MessageData } from "$lib/chat/chat";
+	import type { MessageData } from "$lib/chat/chatDisplay/chat";
     import EncryptedChatGeneric from "$lib/chat/test/EncryptedChatGeneric.svelte";
 	import SimpleForm from "$lib/Components/SimpleForm.svelte";
 	import Kanban from "./Kanban.svelte";

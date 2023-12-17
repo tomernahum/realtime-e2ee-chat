@@ -1,6 +1,6 @@
 <script lang="ts">
     import { socket } from "$lib/realtime";
-	import { stringToHue } from "./chat";
+	import { stringToHue } from "../chat";
 
     export let onSendMessage:(value:string)=>void;
 

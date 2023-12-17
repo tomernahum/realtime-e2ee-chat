@@ -1,6 +1,6 @@
 <script lang="ts">
     import { socket } from "$lib/realtime";
-	import { stringToHue, type MessageData } from "./chat";
+	import { stringToHue, type MessageData } from "../chat";
 
     export let data:MessageData;
 

@@ -3,8 +3,8 @@
 <script lang="ts">
 	import SimpleForm from "$lib/Components/SimpleForm.svelte";
 	import { areScrolledToBottom, scrollToBottom } from "$lib/Components/utils";
-	import Messages from "$lib/chat/Messages.svelte";
-	import NewMessagesAlert from "$lib/chat/NewMessagesAlert.svelte";
+	import Messages from "$lib/chat/chatDisplay/Messages.svelte";
+	import NewMessagesAlert from "$lib/chat/chatDisplay/NewMessagesAlert.svelte";
 	import type { MessageData } from "$lib/chat/chat";
 	import { onMount, tick } from "svelte";
 	import SendMessageBox from "./SendMessageBox.svelte";
