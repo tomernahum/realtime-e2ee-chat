@@ -1,3 +1,7 @@
+
+I have written more todos in a seperate software.
+Wappalyzer is saying I use google analytics, I don't. I use it on youtube.ttools.io but not chat.ttools.io, so maybe thats why its getting confused? But you can look at the network tab or the code theres no google.
+
 Todo:
 - new messages centering when sidebar on
 
