@@ -17,6 +17,7 @@
 	import { crossfade, fade, fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import HeaderTitle from './HeaderTitle.svelte';
+	import Banner from './Banner.svelte';
 
     $: currentPage = $page.url.pathname;
 
@@ -57,6 +58,11 @@
 
 </script>
 
+
+<div style="position:fixed; top:0; left:0; width:100%; z-index:100000">
+    <Banner />
+</div>
+
 <svelte:window bind:innerWidth={screenWidth}/>
 <div class="main-div" data-show-sidebar={showSidebar} bind:this={mainDiv}>
     <!-- doing it like this allows it to work without js -->
@@ -82,6 +88,7 @@
         <SidebarContents on:linkClicked={handleLinkClicked}/>
     </aside>  
 
+
     
 
     <div 
@@ -98,6 +105,8 @@
     <!-- Was For Tricking Svelte since it can't see this through the key apperently and keeps deleting my css selectors-->
     <!-- <div class="page-container" style="display:none"></div> -->
     
+
+
 </div>
 
 <style>
