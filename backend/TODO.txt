@@ -1,4 +1,0 @@
-
-Actually compile the typescript and perform any other optimizations
-
-idk why theres no create-node-app that configures ts for you like there is for frontend

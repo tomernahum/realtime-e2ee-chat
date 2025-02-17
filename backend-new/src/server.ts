@@ -1,7 +1,7 @@
 
 import { Server } from "socket.io"
 import type { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData } from "../../shared-types"
-import { EmptyPersister, Persister, PlanetScalePersister } from "./persistance/old-presister"
+import { EmptyPersister, Persister, PlanetScalePersister } from "./persistance/persister-old"
 import { time } from "console"
 
 const io = new Server<
