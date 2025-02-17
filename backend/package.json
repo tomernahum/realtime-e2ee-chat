@@ -8,7 +8,8 @@
     "dev": "tsx watch src/server.ts",
     "start": "tsx src/server.ts",
     "update-db-schema": "drizzle-kit push --config=src/persistence/drizzle.config.ts",
-    "preview-db": "drizzle-kit studio --config=src/persistence/drizzle.config.ts"
+    "preview-db": "drizzle-kit studio --config=src/persistence/drizzle.config.ts",
+    "to-start-note": "echo \" make sure the db name in globals.ts is correct \n then update the db schema with 'pnpm run update-db-schema' \n then run 'pnpm run start'\""
   },
   "keywords": [],
   "author": "",
