@@ -13,17 +13,31 @@
     EasyChatRoom 
 </h1>
 <p> 
-    Create a secure<span class="note">(er than average 
+    <!-- Create a secure<span class="note">(er than average 
         <span class="note-2">(i'm guessing)</span>)
-    </span>
-</p>
-<p style="margin-bottom: .5rem">
+    </span> -->
+    Create a secure<span class="note">(ish)</span>* sharable E2EE
     chatroom in 2 clicks!
 </p>
 
 
 
+
 <CreateRoom />
+<p style="margin-top:1rem; font-size: .9rem; line-height: 1.2rem">
+    <span class="note-b">
+        *there is an attack vector I know about that me or my servers could perform (that also applies to most other e2ee web/web-served apps tbf), so you still have to trust me/my server providers (cloudflare & railway)/my gov (us) not to act maliciously in order to read your messages, defeating most of the point of e2ee. but at least it protects against passive attacks / "accidental" snooping, and I am likely too small to be targeted by gov or even hackers.
+        <!-- <br> -->
+        Specifically my server could inject malicious code when you load the page and steal the encryption keys.
+        <br>
+        To fix this I would probably add binary transparency / code verification technology (like these projects have sort of done) 
+        <br>but I have not done that yet.
+        also, there are also other reasons this is potentially less secure than other messengers (see below),
+        <br> 
+        BUT it is the most convenient messenger, and it is much less likely that I can read your messages compared to admins of other messaging sites
+    </span>
+    <!-- Security Issues to write below: code injection by me vulnerability, too easy to leak keys, no FS/PCS and other properties like signal, I do not check on packages frequently/thoroughly enough, I am a novice server admin so more vulnerable to hackers-->
+</p>
 <br>
 <br style="margin-bottom: 2rem;">
 <hr>
@@ -176,6 +190,7 @@
     .note-0 {
         opacity: 90%;
     }
+
 
     h5 {
         /* text-decoration: underline;   */
