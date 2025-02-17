@@ -1,7 +1,8 @@
 
 import { Server } from "socket.io"
 import type { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData } from "../../shared-types"
-import { EmptyPersister, Persister, PlanetScalePersister } from "./persistance/old-presister"
+// import { EmptyPersister, Persister, PlanetScalePersister } from "./persistance/old-presister"
+import {Persister, EmptyPersister, SqlitePersister} from "./persistence/persister"
 import { time } from "console"
 
 const io = new Server<
@@ -20,7 +21,7 @@ const io = new Server<
 // const persister:Persister = new PlanetScalePersister() //experimenting with dependency injection / OOP
 let persister:Persister
 try {
-    persister = new PlanetScalePersister();
+    persister = new SqlitePersister();
     await persister.ping();
 }
 catch (exception) {

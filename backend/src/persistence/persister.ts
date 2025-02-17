@@ -105,3 +105,22 @@ export class SqlitePersister implements Persister {
     //     })
     // }
 }
+
+
+export class EmptyPersister implements Persister {
+    db: ReturnType<typeof drizzle>;
+  
+    constructor() {}
+  
+    async saveMessage(roomId: string, message: EncryptedTextObj) {
+      return true;
+    }
+  
+    async getMessages(roomId: string) {
+      return [];
+    }
+  
+    async ping() {
+      return;
+    }
+  }

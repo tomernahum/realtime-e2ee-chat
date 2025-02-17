@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "start": "tsx src/server.ts",
-    "update-db-schema": "drizzle-kit push --config=src/persistance/drizzle.config.ts",
-    "preview-db": "drizzle-kit studio --config=src/persistance/drizzle.config.ts"
+    "update-db-schema": "drizzle-kit push --config=src/persistence/drizzle.config.ts",
+    "preview-db": "drizzle-kit studio --config=src/persistence/drizzle.config.ts"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +23,6 @@
     "@types/node": "^22.13.4",
     "drizzle-kit": "^0.30.4",
     "tsx": "^4.19.2"
-  }
+  },
+  "type": "module"
 }
