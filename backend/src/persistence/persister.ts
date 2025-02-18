@@ -1,12 +1,10 @@
-
 import { EncryptedTextObj } from "../../../shared-types";
 
-import { DB_FILE_NAME } from '../../globals';
+import { DB_FILE_NAME } from "../../globals";
 
-import { drizzle } from 'drizzle-orm/libsql';
+import { drizzle } from "drizzle-orm/libsql";
 import { encryptedMessages } from "./schema-sqlite";
 import { desc, eq } from "drizzle-orm";
-
 
 export interface Persister {
     saveMessage(roomId: string, message: EncryptedTextObj): Promise<Boolean>;
@@ -20,12 +18,9 @@ export class SqlitePersister implements Persister {
     constructor() {
         const db = drizzle(DB_FILE_NAME);
         this.db = db;
-    
-
     }
 
-    async saveMessage(roomId: string, message: EncryptedTextObj){
-
+    async saveMessage(roomId: string, message: EncryptedTextObj) {
         if (!roomId) {
             console.error("NO ROOM ID");
             return false;
@@ -37,47 +32,45 @@ export class SqlitePersister implements Persister {
             iv: message.iv,
         });
         const endTime = performance.now();
-        console.log(`Insert Message call took ${endTime - startTime} milliseconds`);
+        console.log(
+            `Insert Message call took ${endTime - startTime} milliseconds`
+        );
 
-        
         return true; //this is supposed to be if the opp was successful or not
     }
 
-    async getMessages(roomId: string){
-
+    async getMessages(roomId: string) {
         // gets the most recent 1000 messages
         //TODO: pagination
-
 
         const startTime = performance.now();
 
         const data = (
-          await this.db
-            .select()
-            .from(encryptedMessages)
-            .where(eq(encryptedMessages.roomId, roomId))
-            .orderBy(desc(encryptedMessages.id))
-            .limit(100)
+            await this.db
+                .select()
+                .from(encryptedMessages)
+                .where(eq(encryptedMessages.roomId, roomId))
+                .orderBy(desc(encryptedMessages.id))
+                .limit(100)
         ).reverse();
 
         // clean and convert data into encrypted text objects
         const clean_data = data.reduce(
-          (accumulator: EncryptedTextObj[], item) => {
-            //skip over corrupted items (todo maybe: set up a process for cleaning these rows)
-            if (!item.cipher || !item.iv) {
+            (accumulator: EncryptedTextObj[], item) => {
+                //skip over corrupted items (todo maybe: set up a process for cleaning these rows)
+                if (!item.cipher || !item.iv) {
+                    return accumulator;
+                }
+                const x = {
+                    cipher: item.cipher,
+                    iv: item.iv,
+                };
+                // accumulator
+                accumulator.push(x);
                 return accumulator;
-            }
-            const x = {
-                cipher: item.cipher,
-                iv: item.iv,
-            };
-            // accumulator
-            accumulator.push(x);
-            return accumulator;
-          },
-          []
+            },
+            []
         );
-
 
         const endTime = performance.now();
         console.log(
@@ -106,21 +99,30 @@ export class SqlitePersister implements Persister {
     // }
 }
 
-
 export class EmptyPersister implements Persister {
     db: ReturnType<typeof drizzle>;
-  
+
     constructor() {}
-  
+
     async saveMessage(roomId: string, message: EncryptedTextObj) {
-      return true;
+        return true;
     }
-  
+
     async getMessages(roomId: string) {
-      return [];
+        return [];
     }
-  
+
     async ping() {
-      return;
+        return;
     }
-  }
+}
+
+/*
+Future potential persisters
+    - kv: eg leveldb or rocksdb
+        - redis not good because doesn't scale well beyond ram amount
+    - wide column: better than kv? 
+    - mongo/documentdb
+
+
+*/
