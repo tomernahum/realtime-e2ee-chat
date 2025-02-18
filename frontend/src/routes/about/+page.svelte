@@ -57,6 +57,8 @@
         </a> is used for encryption/decryption, this is provided by the browser. The algorithm used is AES-GCM with a 128-bit key.
     </p>
 
+    <!-- Also the IV!! -->
+
     <p style="margin-top:.3rem">
         The key is randomly generated through a method provided by the Web Crypto Api as well. The key is exported and imported through a method in the api that returns a jwk. However we throw out all fields of the jwk except for the k field (the part that's actually a key) and hardcode the others when we import. 
     </p>
