@@ -59,9 +59,9 @@
 </script>
 
 
-<div style="position:fixed; top:0; left:0; width:100%; z-index:100000">
+<!-- <div style="position:fixed; top:0; left:0; width:100%; z-index:100000">
     <Banner />
-</div>
+</div> -->
 
 <svelte:window bind:innerWidth={screenWidth}/>
 <div class="main-div" data-show-sidebar={showSidebar} bind:this={mainDiv}>
@@ -297,7 +297,7 @@
 
     main {
         max-width: 30rem;
-        max-width: 28rem;
+        /* max-width: 28rem; */
 
         margin: 0 auto;
         /* padding: 0 .5rem; */

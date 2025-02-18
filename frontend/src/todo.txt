@@ -1,3 +1,21 @@
+Todo:
+
+- persist identity/chat color across reloads, have button in chat that shows identity that you can expand to select color or refresh identity
+- Improve Sidebar - drop shadow and click out of it to close it!
+- FAQ, revise about page
+- typing in box should expand
+- SEO tags
+    I deserve first or second result for "free chatrooms no login e2ee"
+- maybe make text smaller or somthing
+
+
+
+
+
+
+
+OLD:
+
 Realtime is global but rooms is local to component
 
 I think it would be good to still listen for messages on all rooms if you change tab
