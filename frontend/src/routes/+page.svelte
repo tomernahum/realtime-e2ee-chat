@@ -66,8 +66,7 @@
     </p>
     <p style="margin-top:.3rem">
         2) There is a known vulnerability that exists by default in all e2ee apps running in websites, where the website code server could serve malicious code 
-        (that doesn't match the verifiable open source version) 
-        that steals your keys or messages.
+        that steals your keys or messages, instead of serving you the correct & more verifiable open source code.
          <!-- only way to catch this would be to inspect your code every time you load a page -->
         <br style="margin-bottom:.2rem">
 
@@ -81,11 +80,14 @@
         <a href="https://faq.whatsapp.com/1210420136490135/" style="color:white">whatsapp did</a>) -->
         (like 
         <a href="https://faq.whatsapp.com/1210420136490135/" target="_blank">whatsapp</a>,
-        <a href="https://stosb.com/blog/signed-web-pages/" target="_blank">etesync</a>, also see <a href="https://wiki.mozilla.org/Security/Binary_Transparency" target="_blank">firefox's binary transparency wiki page</a>) 
-        
+        <a href="https://stosb.com/blog/signed-web-pages/" target="_blank">etesync</a>, 
+        <!-- also see <a href="https://wiki.mozilla.org/Security/Binary_Transparency" target="_blank">firefox's binary transparency wiki page</a>)  -->
+        have done. also see 
+        <!-- <a href="https://wiki.mozilla.org/Security/Binary_Transparency" target="_blank">binary transparency</a>)  -->
+        <a href="https://wiki.mozilla.org/Security/Binary_Transparency" target="_blank">binary</a>-<a href="https://developers.google.com/android/binary_transparency/overview"> transparency</a>).
         
         <br style="margin-bottom:.2rem">
-        Even with this problem you are still protected against passive attacks / "accidental" snooping of your messages; an attacker (ie me or my server providers) would have to act intentionally to break your encryption and read your messages
+        Even with this problem you are still protected against passive attacks / "accidental" snooping of your messages; an attacker (ie me or my server providers) would have to act intentionally to break your encryption and read your messages.
     </p>
         <!-- Security Issues to write: code injection by me vulnerability, too easy to leak keys, no FS/PCS and other properties like signal, I do not check on packages frequently/thoroughly enough, I am a novice server admin so more vulnerable to hackers. Edit: wait stuilly the whole point is the server doesn't have to be secure, the frontend serving server is cloudflare pages and is pretty secure (though my admin account could be hacked or turned out to be misconfigured) -->
     <p></p>
@@ -94,9 +96,9 @@
 <hr>
 
 <p style="margin-top: 1rem;"> See
-    <a href="">about</a> 
+    <a href="/about">About</a> 
     and 
-    <a href="">FAQ</a>
+    <a href="/faq">FAQ</a>
     for more information about the app.
 </p>
 <div style="margin-top:10rem; margin-bottom:0rem">

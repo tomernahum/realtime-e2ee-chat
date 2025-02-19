@@ -1,5 +1,6 @@
 Todo:
 
+- I really thought I implemented message padding in the encryption but I can't find it? need to make sure it's there
 - persist identity/chat color across reloads, have button in chat that shows identity that you can expand to select color or refresh identity
 - Improve Sidebar - drop shadow and click out of it to close it!
 - FAQ, revise about page
@@ -7,6 +8,7 @@ Todo:
 - SEO tags
     I deserve first or second result for "free chatrooms no login e2ee"
 - maybe make text smaller or somthing
+
 
 
 

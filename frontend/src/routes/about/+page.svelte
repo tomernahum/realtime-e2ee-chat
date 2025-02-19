@@ -1,13 +1,33 @@
 <h1 style="margin-top:1rem; margin-bottom:.5rem"> About </h1>
-<p>
+<p>Work In Progress. Below pages do not all exist yet</p>
+<p style="margin-top:0.5rem">
     See <a href="/"> Home</a> for features etc
 </p>
+<p style="margin-top:0.5rem">
+    See <a href="/faq"> FAQ </a> for answers to specific questions
+</p>
+<p style="margin-top:0.5rem">
+    See <a href="/security">Security</a> for more information about the security of the app
+</p>
+<!-- Pages we want:
+ 
+
+
+
+
+-->
+<p style="margin-top:1rem">
+    <a href="https://github.com/tomernahum/realtime-e2ee-chat" target="_blank">Source Code</a>
+</p>
+<!-- <p style="margin-top:1rem">
+    <a href="https://www.ttools.io">More Tools</a>
+</p> -->
 
 <svelte:head>
     <title>EasyChatRoom - About</title>
 </svelte:head>
 
-
+{#if false}
 <div style="margin-bottom:1rem;" />
 <br>
 <!-- <hr> -->
@@ -15,7 +35,7 @@
 <div style="margin-bottom:1rem;" />
 
 <div>
-    <h3>Technologies Used</h3>
+    <h3 style="margin-left: -1.6ch">∗ Technologies Used</h3>
 
     <li style="margin-top:.3rem">
         Svelte and SvelteKit for frontend
@@ -199,6 +219,7 @@ kty: "oct",
     
     
 </div>
+{/if}
 
 
 <div style="margin-bottom: 50vh;" />
