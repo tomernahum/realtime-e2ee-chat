@@ -6,7 +6,7 @@
 
 {#if show}
 <div class="banner">
-    <h3 class="message"><b>Notice</b>: messages may be lost at any time</h3>
+    <h3 class="message"><b>Notice</b>: we are undergoing maintenance, everything might not work</h3>
     <button on:click={() => show = false}>
         X
     </button>

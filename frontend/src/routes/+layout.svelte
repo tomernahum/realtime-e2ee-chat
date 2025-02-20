@@ -59,9 +59,9 @@
 </script>
 
 
-<!-- <div style="position:fixed; top:0; left:0; width:100%; z-index:100000">
+<div style="position:fixed; top:0; left:0; width:100%; z-index:100000">
     <Banner />
-</div> -->
+</div>
 
 <svelte:window bind:innerWidth={screenWidth}/>
 <div class="main-div" data-show-sidebar={showSidebar} bind:this={mainDiv}>
