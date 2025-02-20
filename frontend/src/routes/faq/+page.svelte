@@ -18,12 +18,14 @@ Reliability:
     If the data gets to be too much I might wipe some data, starting with messages least likely to be needed  (messages older than 500 or from rooms that have not been active in a long time)
     : no guarantees that I will not accidentally lose your data, but I have set up a backup of the database (by the time you're reading this). I did lose all data once [explain reason]
 
-Ask questions in this chatroom, I will check it every once in a while: https://chat.ttools.io/room/d2a0e438#M2SXzAT6n6PzYEe3L37evQ
+Ask questions in this chatroom, I will check it every once in a while: https://chat.ttools.io/room/8b79d6a9#u_I04ZZ_6GJmwFQ4wECqaQ
 
 
 Other pages explain:
 - security promises / downsides / differences from other apps
 - technologies used
+    - sveltekit for frontend, typescript on frontend&backend, socketio with shared types for websocket communication, drizzleORM + sqlite for backend persistance (formerly was using planetscale, which was a dumb mistake as it increased latency, + they killed their free tier on me, decided sqlite scales fine for the small number of users that I have)
+    - frontend hosted on cloudflare pages (static), backend was on railway, might move it over to hetzner vps for freeer db persistence, still looking into it
 - cryptographic primitives/protocols used, more technical 
 </pre>
 

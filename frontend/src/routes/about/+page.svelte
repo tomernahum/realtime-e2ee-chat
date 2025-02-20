@@ -1,5 +1,4 @@
 <h1 style="margin-top:1rem; margin-bottom:.5rem"> About </h1>
-<p>Work In Progress. Below pages do not all exist yet</p>
 <p style="margin-top:0.5rem">
     See <a href="/"> Home</a> for features etc
 </p>
