@@ -3,9 +3,6 @@ Todo CURRENT:
 if you're reading this feel free to contribute one of these as a PR
 (sorry the code was bad I'm totally way better now)
 
-
-- I really thought I implemented message padding in the encryption but I can't find it? need to make sure it's there
-
 - persist identity/chat color across reloads, maybe have button in chat that shows identity that you can expand to select color or refresh identity
 - typing in box should expand
 

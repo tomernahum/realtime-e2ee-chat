@@ -80,13 +80,19 @@
     </a>, which is provided by the browser, is used for encryption, decryption, and key generation. The algorithm used is AES-GCM with a 128-bit key. the IV is generated randomly via the crypto api.
 </p>
 <p style="margin-top:.5rem">
-    Message plaintexts are also padded to increments of [TO BE COMPLETED] using [TO BE COMPLETED]
+    Message plaintexts are also padded before encrypting, to increments of the nearest 1000 or 5000 characters, by adding a 1 and then a bunch of 0s to the end of the plaintext. messages past 5000 characters are not supported. Messages who's ciphertext is too long will be rejected by the server. I picked these numbers arbitrarily as far as I can remember.
 </p>
 <p style="margin-top:.5rem">
-    The key is exported from the web crypto api, encoded with base64 and stored in the url, after a # symbol so that the server doesn't see it. chats in a room are encrypted and decrypted with the key found in the url. This makes the security model simple: anyone who has/sees the url can access the chatroom, anyone who can't, can't.
+    The key is exported from the web crypto api, encoded with base64 and stored in the url, after a # symbol so that the server doesn't see it. chats in a room are encrypted and decrypted with the key found in the url. This makes the security model simple: anyone who has/sees the url can access the chatroom, anyone who can't, can't. 
+    <br>
+    
+    There is no key rotation, unfortunately. If your room gets compromised you will have to manually make a new room and reinvite who you want via your out-of-band channels.
 </p>
 <p style="margin-top:.5rem">
-    When a new message is sent, it is first encrypted and then sent in base64 to the server, which then sends it back to all other active clients on that room via a websocket connection, and also writes it to a db for persistence. when a client loads a new room, the most recent messages are loaded from the db and sent down to it. The client decrypts messages after getting them. You can inspect the source code for more detail.
+    When a new message is sent, it is first padded, encrypted, and then sent in base64 to the server, which then sends it back to all other active clients on that room via a websocket connection, and also writes it to a db for persistence. when a client loads a new room, the most recent messages are loaded from the db and sent down to it. The client decrypts messages after getting them. You can inspect the source code for more detail.
+</p>
+<p style="margin-top:.5rem">
+    The server sees roomIds in plaintext, and does see which encrypted messages are associated with which room, and which clients are subscribed to which room.The content of the messages are encrypted though and only available to those with the room's key. Clients subscribe to get message history and receive new message updates for a room based on the roomId.  The roomId is randomly generated and (probably) undiscoverable to regular people who do not have access to the server, so regular clients should not be able to see even encrypted messages from a room they didn't get shared with them, though the server could see a list of still encrypted messages.
 </p>
 
 <br>
