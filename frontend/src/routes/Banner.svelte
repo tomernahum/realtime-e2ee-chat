@@ -1,7 +1,7 @@
 <script>
     
     
-    let show = true;
+    let show = false;
 </script>
 
 {#if show}
