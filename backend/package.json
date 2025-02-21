@@ -8,9 +8,12 @@
     "dev": "tsx watch src/server.ts",
     "start": "tsx src/server.ts",
     "update-db-schema": "drizzle-kit push --config=./src/persistence/drizzle.config.ts",
+    "migrate": "drizzle-kit push --config=./src/persistence/drizzle.config.ts",
     "preview-db": "drizzle-kit studio --config=./src/persistence/drizzle.config.ts",
-    "to-start-note": "echo \" make sure the db name in globals.ts is correct \n then update the db schema with 'pnpm run update-db-schema' \n then run 'pnpm run start'\"",
-    "setup-and-start": "pnpm run update-db-schema && pnpm run start"
+    "to-start-note": "echo \" make sure the correct env var is set & the directory exists \n then update the db schema with 'pnpm run update-db-schema' \n then run 'pnpm run start'\"",
+    
+    "migrate-if-set": "[ \"$MIGRATE_DB\" = \"true\" ] && echo \"Executing command...\" && pnpm run migrate || exit 0",
+    "real-start": "pnpm run migrate-if-set; pnpm run start"
   },
   "keywords": [],
   "author": "",
