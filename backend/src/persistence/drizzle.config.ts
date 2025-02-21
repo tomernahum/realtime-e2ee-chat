@@ -7,7 +7,7 @@ import { DB_FILE_NAME } from '../../globals';
 
 export default defineConfig({
   out: './drizzle',
-  schema: './src/persistance/schema-sqlite.ts',
+  schema: './src/persistence/schema-sqlite.ts',
   dialect: 'sqlite',
   dbCredentials: {
     url: DB_FILE_NAME
