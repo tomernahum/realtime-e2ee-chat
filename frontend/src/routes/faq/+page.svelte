@@ -18,6 +18,10 @@ Reliability:
     If the data gets to be too much I might wipe some data, starting with messages least likely to be needed  (messages older than 500 or from rooms that have not been active in a long time)
     : no guarantees that I will not accidentally lose your data, but I have set up a backup of the database (by the time you're reading this). I did lose all data once [explain reason]
 
+More
+- Why did you make this?
+Mostly to learn and practice making an apps. specifically this started as a test of learning websockets / realtime, then I added end to end encryption too. I want to eventually make an end to end encrypted productivity app, so this app was a good first step to learn some of the technologies. I also practiced frontend html and css (with svelte framework) there are no ui libraries here or anything. I know there is room for improvement though, especially with the sidebar closing, need to work on that. also need some ux improvements maybe, but anyway. I figured if I was already making a app for testing, I might as well polish it a tiny bit and deploy it in case it was useful for someone, or in case it looked good on my resume. 
+
 Ask questions in this chatroom, I will check it every once in a while: https://chat.ttools.io/room/8b79d6a9#u_I04ZZ_6GJmwFQ4wECqaQ
 
 

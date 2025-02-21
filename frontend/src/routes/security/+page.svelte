@@ -19,7 +19,11 @@
 </p>
 <br>
 
-<h3>Security drawbacks of this app:</h3>
+<div style="display:flex; align-items:center; gap: 1ch">
+    <h3>Security drawbacks of this app: </h3>
+    <p>(Not in order)</p>
+</div>
+
 <ol>
     <li>
         it's too easy for users to accidentally leak keys, since they are stored in the url and visible at all times. User could accidentally share it with a snooping provider or livestream, and a malicious browser extension could steal it too easily (that part is hard to mitigate in general afaik, I know cryptpad adds an iframe sandbox to help with this)
