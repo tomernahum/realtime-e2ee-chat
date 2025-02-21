@@ -45,7 +45,7 @@
 <a href="/room/b553d191#y2SunPQxcyqUeUC5Jaq3Tw">Public Room #2</a>
 <a href="/room/ee7c3eaf#QHLpsxHrjGYmNeRYiTzf2A">Public Room #3</a>
 <!-- <br> -->
-<a href="/room/8b79d6a9#u_I04ZZ_6GJmwFQ4wECqaQ">Suggestion Box </a>
+<a href="/room/8b79d6a9#u_I04ZZ_6GJmwFQ4wECqaQ">Suggestion Box & FAQ</a>
 
 <br>
 <h3><u>Create Your Own</u></h3>

@@ -1,3 +1,32 @@
+Todo CURRENT:
+
+if you're reading this feel free to contribute one of these as a PR
+(sorry the code was bad I'm totally way better now)
+
+
+- I really thought I implemented message padding in the encryption but I can't find it? need to make sure it's there
+
+- persist identity/chat color across reloads, maybe have button in chat that shows identity that you can expand to select color or refresh identity
+- typing in box should expand
+
+- Improve Sidebar - drop shadow and click out of it to close it!
+- Recent rooms in sidebar
+- QR code in room generation popup
+- SEO tags
+    I deserve first or second result for "free chatrooms no login e2ee"
+
+- maybe make text smaller or something
+- fix up FAQ
+
+~~FAQ, revise about page~~
+
+
+
+
+
+
+OLD:
+
 Realtime is global but rooms is local to component
 
 I think it would be good to still listen for messages on all rooms if you change tab

@@ -1,7 +1,8 @@
 
 import { Server } from "socket.io"
 import type { ServerToClientEvents, ClientToServerEvents, InterServerEvents, SocketData } from "../../shared-types"
-import { EmptyPersister, Persister, PlanetScalePersister } from "./persistance/persister"
+// import { EmptyPersister, Persister, PlanetScalePersister } from "./persistance/old-presister"
+import {Persister, EmptyPersister, SqlitePersister} from "./persistence/persister"
 import { time } from "console"
 
 const io = new Server<
@@ -20,7 +21,7 @@ const io = new Server<
 // const persister:Persister = new PlanetScalePersister() //experimenting with dependency injection / OOP
 let persister:Persister
 try {
-    persister = new PlanetScalePersister();
+    persister = new SqlitePersister();
     await persister.ping();
 }
 catch (exception) {
@@ -109,7 +110,13 @@ io.on("connection", (socket)=>{
             callback({}) //mark as sent. Do this before saving to db to reduce latency / not rely on db
 
         //Save message to database
-        await persister.saveMessage(roomId, encryptedMessage) //todo will crash if database is down i think
+        try {
+            await persister.saveMessage(roomId, encryptedMessage) //todo will crash if database is down i think
+        }
+        catch (e) {
+            console.error("Failed to save message to database", e)
+            // todo: maybe let the client know the persist write failed, etc. for now the message will just be missing
+        }
     })
 
     //This could also just be a REST type call. The cool thing about not doing that is that you can return and then keep running code in the function after. Although i guess you could do something like that by not awaiting async functions

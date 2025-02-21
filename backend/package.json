@@ -1,29 +1,30 @@
 {
-  "devDependencies": {
-    "@types/node": "^20.5.9",
-    "bun": "^1.0.6",
-    "drizzle-kit": "^0.19.13"
-  },
-  "dependencies": {
-    "@digitak/esrun": "^3.2.24",
-    "@planetscale/database": "^1.10.0",
-    "dotenv": "^16.3.1",
-    "drizzle-orm": "^0.28.5",
-    "mysql2": "^3.6.0",
-    "socket.io": "^4.7.0",
-    "ts-node": "^10.9.1"
-  },
-  "scripts": {
-    "dev": "bun --watch src/server.ts",
-    "start": "esrun src/server.ts"
-  },
   "name": "backend",
   "version": "1.0.0",
-  "main": "server.ts",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "update-db-schema": "drizzle-kit push --config=./src/persistence/drizzle.config.ts",
+    "preview-db": "drizzle-kit studio --config=./src/persistence/drizzle.config.ts",
+    "to-start-note": "echo \" make sure the db name in globals.ts is correct \n then update the db schema with 'pnpm run update-db-schema' \n then run 'pnpm run start'\"",
+    "setup-and-start": "pnpm run update-db-schema && pnpm run start"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "engines": {
-    "node": "^18"
-  }
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.39.3",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "drizzle-kit": "^0.30.4",
+    "tsx": "^4.19.2"
+  },
+  "type": "module"
 }

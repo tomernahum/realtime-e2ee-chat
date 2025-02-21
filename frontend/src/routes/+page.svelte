@@ -12,157 +12,87 @@
 <h1 style="margin-top:1rem; margin-bottom:.2rem"> 
     EasyChatRoom 
 </h1>
-<p> 
-    Create a secure<span class="note">(er than average 
+<p style="margin-bottom:.4rem"> 
+    <!-- Create a secure<span class="note">(er than average 
         <span class="note-2">(i'm guessing)</span>)
-    </span>
-</p>
-<p style="margin-bottom: .5rem">
+    </span> -->
+    Create a secure<span class="note">(ish)</span>* E2EE 
     chatroom in 2 clicks!
 </p>
 
-
-
 <CreateRoom />
-<br>
-<br style="margin-bottom: 2rem;">
+
+
+<ul style="margin-top: .2rem;;">
+    <li>
+        No Accounts
+    </li>
+    <li style="margin-top: .2rem;">
+        E2EE, nobody can see your chats but those with the secret link*
+    </li>
+    <li style="margin-top: .2rem;">
+        <a href="https://github.com/tomernahum/realtime-e2ee-chat" style="color:white">Open Source</a>, Privacy Focused, Free
+    </li>
+</ul>
+
+<div style="margin-bottom: 3.2rem;">
+
+</div>
 <hr>
-<br style="margin-bottom: .3rem;">
-<div>
-    <h5 style="margin-bottom: .3rem">
-        Features end-to-end encryption via a secret key stored in the URL
-    </h5>
-    <p style="margin-bottom: .3rem">
-        This means that only those who see the URL can read your chat messages!
-        (Our server can't)
-    </p>
-    <p style="margin-bottom: .3rem">
-        This is a good compromise between ease of use and privacy 
-        ...According to me at least
-    </p>
-    <p style="margin-bottom: .6rem">
-        But it is the same way 
-        <a href="https://blog.excalidraw.com/end-to-end-encryption/">
-            excalidraw</a>,
-        <a href="https://help.mega.io/files-folders/sharing/encrypted-links">
-            mega.nz</a>, and 
-        <a href="https://docs.cryptpad.org/en/dev_guide/general.html#encryption">
-            cryptpad
-        </a>
-        work.
-    </p>
-    
-    <p class="offset" style="margin-bottom: .6rem; ">
-        If you're wondering how it works, browsers don't send the part after the <code>#</code> in the url to webservers, so this webapp encrypts/decrypts chat messages client side only, by using a symmetric AES-GCM key derived from the part after the # in the url of each chatroom
-    </p>
-
+<div style="margin-top:1rem; font-size: 0.95rem">
+    <h2 style="font-size:1.1rem; font-weight:500; margin-left: -.8ch">*Disclaimer:</h2>
     <p>
-        <strong>Disclaimer: </strong>
-        I am not a security or programming expert, and this system definitely has vulnerabilities and attack vectors (as do even the most well funded devices and applications), but this system probably has more, and more egregious ones, due to my amateur nature. But I think it's at least better than having no attempt at privacy features.
+        1) This app does not have as much total security as some other encrypted messaging apps, such as signal. 
+        <!-- svelte-ignore a11y_invalid_attribute -->
+        <a href="/security"> (see more details) </a>
+        <br>
+        BUT it is the most secure out of all messaging apps that are this convenient to use, as far as I know
     </p>
-</div>
+    <p style="margin-top:.3rem">
+        2) There is a known vulnerability that exists by default in all e2ee apps running in websites, where the website code server could serve malicious code 
+        that steals your keys or messages, instead of serving you the correct & more verifiable open source code.
+         <!-- only way to catch this would be to inspect your code every time you load a page -->
+        <br style="margin-bottom:.2rem">
 
-<br>
-<br>
-<div>
-    <h5 style="margin-bottom: .3rem">
-        No accounts needed
-    </h5>
-    <p>
-        Just click the button above, send the URL to your friends, and chat real quick. No signing up involved!
+        <!-- TODO: MAYBE: move part of this out into different page  -->
+        
+        This service is vulnerable to that as well. I am working on a solution to this but it would probably require 
+        installing a browser extension 
+        <!-- extending the browser -->
+        to verify that served code is not malicious 
+        <!-- (like what
+        <a href="https://faq.whatsapp.com/1210420136490135/" style="color:white">whatsapp did</a>) -->
+        (like 
+        <a href="https://faq.whatsapp.com/1210420136490135/" target="_blank">whatsapp</a>,
+        <a href="https://stosb.com/blog/signed-web-pages/" target="_blank">etesync</a>, 
+        <!-- also see <a href="https://wiki.mozilla.org/Security/Binary_Transparency" target="_blank">firefox's binary transparency wiki page</a>)  -->
+        have done. also see 
+        <!-- <a href="https://wiki.mozilla.org/Security/Binary_Transparency" target="_blank">binary transparency</a>)  -->
+        <a href="https://wiki.mozilla.org/Security/Binary_Transparency" target="_blank">binary</a>-<a href="https://developers.google.com/android/binary_transparency/overview"> transparency</a>).
+        
+        <br style="margin-bottom:.2rem">
+        Even with this problem you are still protected against passive attacks / "accidental" snooping of your messages; an attacker (ie me or my server providers) would have to act intentionally to break your encryption and read your messages. Other sites do not even promise that admins will not read your messages, but I do.
     </p>
+        <!-- Security Issues to write: code injection by me vulnerability, too easy to leak keys, no FS/PCS and other properties like signal, I do not check on packages frequently/thoroughly enough, I am a novice server admin so more vulnerable to hackers. Edit: wait stuilly the whole point is the server doesn't have to be secure, the frontend serving server is cloudflare pages and is pretty secure (though my admin account could be hacked or turned out to be misconfigured) -->
+    <p></p>
 </div>
-
-<br>
-<br>
-
-<div>
-    <h5 style="margin-bottom: .3rem">
-        Disappearing rooms or permanent ones
-    </h5>
-    <p>
-        You have the option to select. (Disapearing rooms not yet implemented)
-    </p>
-</div>
-
-<br>
-<br>
-
-<div>
-    <h5 style="margin-bottom: .3rem">
-        Open source and made by an indie dev
-    </h5>
-    <p>
-        Check it out on <a href="">github</a>
-    </p>
-</div>
-
-<br>
-<br>
+<div style="margin-bottom:1rem"></div>
 <hr>
-<br>
 
-<div>
-    <p style="margin-bottom: .2rem;">
-        <a href="http://ttools.io" >
-            Feel free to contact me
-        </a>
-    </p>
+<p style="margin-top: 1rem;"> See
+    <a href="/about">About</a> 
+    and 
+    <a href="/faq">FAQ</a>
+    for more information about the app.
+</p>
+<div style="margin-top:3rem; margin-bottom:15rem">
     <p style="margin-bottom: .1rem;">
         
-        <a href="http://ttools.io" target="_blank">
+        <a href="https://www.ttools.io" target="_blank">
             More tools
         </a>
     </p>
-    
 </div>
-
-{#if false}
-<br>
-<div style="margin-bottom: 50vh;" />
-<hr>
-<br>
-<div>
-    <h3>Technologies Used</h3>
-
-    <li style="margin-top:.3rem">
-        Svelte and SvelteKit for frontend
-    </li>
-    <li style="margin-top:.3rem">
-        SocketIO and NodeJS for relaying messages and saving them to db.
-        <!-- <span class="note">(This could probably be replaced with something more performant)</span> -->
-    </li>
-    <li style="margin-top:.3rem">
-        MySQL with 2 columns (room_id and encrypted_data) and index on room_id for storing chat history. Connected to on backend via DrizzleORM
-    </li>
-    <li style="margin-top:.3rem">
-        Typescript on frontend & backend & for defining the contract for possible socketio messages between them
-    </li>
-    <li style="margin-top:.3rem">
-        Github for ci/cd: cloudflare pages cdn for frontend, railway.app for backend, planetscale for db. All free tier baby
-    </li>
-    
-    <p style="margin-top:.6rem">
-        <span class="note">
-            All of these could be replaced with alternative more performant and/or more horizontally scalable solutions. Only exception is svelte (doesn't need to scale and relatively performant)
-
-        </span>
-    </p>
-    <p>
-        
-    </p>
-    
-</div>
-
-{/if}
-
-
-
-
-
-
-
-<div style="margin-bottom: 60vh;" />
 
 
 
@@ -176,6 +106,10 @@
     .note-0 {
         opacity: 90%;
     }
+    a {
+        color: white
+    }
+
 
     h5 {
         /* text-decoration: underline;   */

@@ -297,7 +297,7 @@
 
     main {
         max-width: 30rem;
-        max-width: 28rem;
+        /* max-width: 28rem; */
 
         margin: 0 auto;
         /* padding: 0 .5rem; */
